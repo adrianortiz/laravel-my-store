@@ -1,0 +1,114 @@
+body {
+    padding: 0;
+    margin: 0;
+    margin-top: 150px;
+    background-color: #F6F6F6;
+    font-family: "Arial", sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 96px;
+    background-color: #2856B5;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+nav {
+    margin: 0 auto;
+    max-width: 960px;
+    height: 60px;
+}
+
+nav a {
+    float: right;
+    padding: 0 16px;
+    height: 100%;
+    line-height: 58px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+nav a:nth-child(1) {
+    float: left;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+header div {
+    width: 100%;
+    height: 36px;
+    background-color: #FFFFFF;
+    border-bottom: solid 1px #DBDBDB;
+    text-align: center;
+}
+
+header div ul {
+    margin: 0;
+    padding: 0;
+}
+
+header div ul li {
+    display: inline-block;
+}
+
+header div ul li a {
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    height: 35px;
+    display: block;
+    padding: 0 18px;
+    line-height: 38px;
+    color: #ABABAB;
+
+    border-bottom: solid 2px transparent;
+}
+
+header div ul li a:hover {
+    color: #000000;
+    border-bottom: solid 2px #2E4AB7;
+}
+
+.title-secction {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.title-secction h2 {
+    padding: 0;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.title-secction p {
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    color: #787879;
+}
+
+.general-container {
+    margin: 0 auto;
+    width: 960px;
+    height: auto;
+    padding: 20px 12px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
+}
+
+.title-consult {
+    width: 100%;
+    background-color: #ABABAB;
+    padding: 4px 10px;
+}
+
+form {
+    font-size: 14px;
+}
