@@ -17,6 +17,13 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
+
+    Route::get('prueba', [
+        'uses'  => 'SliderController@prueba',
+        'as'    => 'admin.prueba'
+    ]);
+
+
     Route::get('slider', [
         'uses'  => 'SliderController@index',
         'as'    => 'admin.index'

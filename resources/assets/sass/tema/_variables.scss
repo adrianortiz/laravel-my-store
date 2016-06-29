@@ -1,0 +1,46 @@
+$white: #FFF;
+$blue-200: #2856B5;
+$blue-150: #3D67BC;
+$blue-100: #E5ECF7;
+$green: #55B43A;
+$yellow: #F5A623;
+$red: #FC2E51;
+
+$max-size: 1080px;
+
+// @Media
+$laptop-l: 1024px;
+$laptop: 900px;
+$tablet: 768px;
+$mobile-l: 600px;
+$mobile-m: 480px;
+$mobile-s: 320px;
+
+// MIXINS
+@mixin prefixer($property, $value, $prefixes: webkit moz ms o) {
+  #{$property}: #{$value};
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: #{$value};
+  }
+}
+
+@mixin transition($value: .3s ease) {
+  @include prefixer(transition, $value);
+}
+
+@mixin box-sizing($value: border-box) {
+  @include prefixer(box-sizing, $value);
+}
+
+@mixin centrarXY() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  @include prefixer(transform, translate(-50%, -50%));
+}
+
+/**
+    @include box-sizing(border-box);
+    @include transition(.3s ease);
+    @include prefixer(width, calc(100% - 214px));
+*/
