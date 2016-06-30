@@ -62,6 +62,11 @@ return [
             'bucket' => 'your-bucket',
         ],
 
+        'photo_slider' => [
+            'driver' => 'local',
+            'root'   => public_path('media/photo-slider'),
+        ],
+
     ],
 
 ];

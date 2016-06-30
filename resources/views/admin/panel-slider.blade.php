@@ -9,8 +9,50 @@
         <div class="page-header">
             <h1>Slider <small>Panel</small></h1>
         </div>
-        <p>Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
-        <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+        <a href="#0" class="btn btn-info" data-toggle="modal" data-target="#modalSlider">Nueva imagen</a>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Nueva imagen para Slider</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        {!! Form::open(['route' => 'admin.slider.store', 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
+                            <div class="form-group">
+                                <label for="title" class="col-sm-2 control-label">Título</label>
+                                <div class="col-sm-10">
+                                    <input name="title" type="text" class="form-control" id="title" placeholder="Ingresa un título">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dec" class="col-sm-2 control-label">Descripción</label>
+                                <div class="col-sm-10">
+                                    <textarea name="dec" class="form-control" rows="3" id="dec" placeholder="Ingresa una descripción"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="desc" class="col-sm-2 control-label">Imagen</label>
+                                <div class="col-sm-10">
+                                    {!! Form::file('img_name', ['accept' => 'image/jpg,image/png', 'id' => 'img_name', 'class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-default">Guardar</button>
+                                </div>
+                            </div>
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="panel-slider-container">
 

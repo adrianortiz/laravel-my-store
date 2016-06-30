@@ -1,17 +1,15 @@
-@extends('layouts.app')
+@extends('admin.layout-panel')
+
+@section('title', 'Home')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+        <!-- Begin page content -->
+<div class="container panel-container">
+    <div class="page-header">
+        <h1>Home <small>Panel</small></h1>
     </div>
+    <p>Bienvenido al sistema <code>Codizer Tienda</code>.</p>
 </div>
+
 @endsection

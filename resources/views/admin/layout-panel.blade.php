@@ -25,17 +25,17 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Dashboard</a></li>
+                <li class="active"><a href="{{ url('/home') }}">Dashboard</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Ver tienda</a></li>
+                <li><a href="{{ url('/') }}">Ver tienda</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hola Ortiz <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Cuenta</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Cerrar sesión</a></li>
+                        <li><a href="{{ url('/logout') }}">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -47,11 +47,11 @@
 <header>
     <div>
         <ul>
-            <li><a href="registro.php">Slider</a></li>
-            <li><a href="consultas.php">Items</a></li>
-            <li><a href="consultas.php">Sections</a></li>
-            <li><a href="consultas.php">Tags</a></li>
-            <li><a href="consultas.php">Sales</a></li>
+            <li><a href="{{ route('admin.slider') }}">Slider</a></li>
+            <li><a href="#0">Items</a></li>
+            <li><a href="#0">Sections</a></li>
+            <li><a href="#0">Tags</a></li>
+            <li><a href="#0">Sales</a></li>
         </ul>
     </div>
 </header>

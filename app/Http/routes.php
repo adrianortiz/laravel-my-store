@@ -15,19 +15,23 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
 
+    Route::get('slider', [
+        'uses'  => 'SliderController@index',
+        'as'    => 'admin.slider'
+    ]);
+
+    Route::post('slider', [
+        'uses' => 'SliderController@store',
+        'as'    => 'admin.slider.store'
+    ]);
 
     Route::get('prueba', [
         'uses'  => 'SliderController@prueba',
         'as'    => 'admin.prueba'
     ]);
 
-
-    Route::get('slider', [
-        'uses'  => 'SliderController@index',
-        'as'    => 'admin.index'
-    ]);
 
 });
 
