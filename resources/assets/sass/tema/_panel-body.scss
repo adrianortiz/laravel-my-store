@@ -53,6 +53,7 @@ header {
 
 
 .panel-container {
+  position: relative;
   background-color: $white;
   @include prefixer(box-shadow, 0px 5px 15px 0px rgba(0,0,0,0.20));
   padding-bottom: 20px;
@@ -129,4 +130,8 @@ header {
         }
     }
   }
+}
+
+.container-top-menu-panel {
+  position: absolute; top: 40px; right: 20px;
 }

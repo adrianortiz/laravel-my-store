@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ url('/') }}" target="_blank">Ver tienda</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hola Ortiz <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hola {{ Auth::user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Cuenta</a></li>
                         <li role="separator" class="divider"></li>
@@ -58,7 +58,7 @@
 
 @yield('content')
 
-<footer class="footer">
+<footer class="footer" style="margin-top: 16px;">
     <div class="container">
         <p class="text-muted">Codizer prototype 2016.</p>
     </div>
