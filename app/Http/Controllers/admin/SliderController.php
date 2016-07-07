@@ -50,16 +50,6 @@ class SliderController extends Controller
 
 
     /**
-     * Devuelve la vista de adminitración de los Sliders
-     * Con sus Sliders
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    private function GetViewSlider() {
-        $sliders = Slider::all();
-        return view('admin/panel-slider', compact('sliders'));
-    }
-
-    /**
      * Elimina un Slider del sistema
      * mediante su identificador
      * @param $id

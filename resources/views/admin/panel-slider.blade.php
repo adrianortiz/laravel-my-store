@@ -15,13 +15,7 @@
             <a href="#0" class="btn btn-info" data-toggle="modal" data-target="#modalSlider">Nueva imagen</a>
         </div>
 
-        @if(Session::has('message'))
-            <!-- Begin alert info -->
-            <div class="alert alert-info alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Mensage!</strong> {{ Session::get('message') }}
-            </div>
-        @endif
+        @include('admin.partials.messages')
 
         <!-- Modal -->
         <div class="modal fade" id="modalSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
