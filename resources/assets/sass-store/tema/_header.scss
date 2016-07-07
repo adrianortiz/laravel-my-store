@@ -1,0 +1,197 @@
+button#menu-a {
+  margin-top: 8px;
+  margin-left: 12px;
+  float: left;
+  display: none;
+  width: 36px;
+  height: 36px;
+  background-color: #303030;
+  border: solid 1px #303030;
+  border-radius: 50%;
+  color: $white;
+  z-index: 1000;
+}
+
+.motrar-header {
+  height: auto;
+}
+
+header {
+  height: 60px;
+  width: 100%;
+  background-color: $black;
+  z-index: 1000;
+
+  nav {
+    max-width: 1010px;
+    margin: 0 auto;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    div#menu-container {
+      float: left;
+
+      ul {
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          display: inline-block;
+
+          a {
+            font-size: 12px;
+            text-decoration: none;
+            color: $white;
+            padding: 22px 9px;
+            display: block;
+            color: $gray-200;
+
+            &:hover {
+              color: $white;
+            }
+          }
+
+          .menu-selected {
+            color: $white;
+          }
+        }
+      }
+    }
+
+    div#lang-container {
+      float: right;
+
+      ul {
+        padding: 0;
+        margin: 0;
+        padding-top: 18px;
+
+        li {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          display: inline-block;
+
+          a {
+            img {
+              width: 30px;
+              height: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+div#title-container {
+  width: 100%;
+  height: 120px;
+  background-color: $gray-100;
+
+  div {
+    margin: 0 auto;
+    max-width: 1010px;
+    height: 100%;
+    padding: 10px;
+    padding-top: 20px;
+
+    div#global-search {
+      padding: 0;
+      margin: 0;
+      margin-top: -30px;
+      width: auto;
+      height: auto;
+      float: right;
+
+      form {
+        input[type="text"] {
+          width: 300px;
+          height: 35px;
+          border: solid 1px $gray-200;
+          padding-left: 10px;
+          background-color: $white;
+          font-size: 12px;
+        }
+
+        input[type="submit"] {
+          width: 30px;
+          height: 35px;
+          background-color: $yellow-300;
+          border: solid 1px $yellow-400;
+          border-radius: 3px;
+          color: $white;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+#logo {
+  margin-top: 10px;
+}
+
+#cart-container-global {
+  float: right;
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    float: left;
+    font-size: 13px;
+
+    select {
+      width: 134px;
+      height: 25px;
+      background-color: $white;
+      margin-top: -10px;
+      @include prefixer(border-radius, 0px !important);
+      @include prefixer(border, solid 1px $gray-200);
+      margin-left: 5px;
+    }
+  }
+
+  li:nth-child(1) {
+    padding-top: 12px;
+
+    a {
+      text-decoration: none;
+
+      img {
+        margin-top: 0;
+        position: relative;
+        top: -3px;
+      }
+
+      span#cart-info {
+        color: $yellow-400;
+        font-weight: bold;
+      }
+
+      span#cart-desc {
+        color: $gray-300;
+      }
+
+      span#cart-count {
+        font-weight: bold;
+        color: $color-text;
+      }
+    }
+
+
+  }
+
+  li:nth-child(2) {
+    border-left: solid 1px $gray-200;
+    padding-top: 14px;
+    padding-left: 26px;
+    margin-left: 26px;
+  }
+}
+

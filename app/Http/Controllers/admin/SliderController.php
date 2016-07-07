@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
 
 class SliderController extends Controller
 {
@@ -35,6 +37,8 @@ class SliderController extends Controller
             $slider->fill($request->all());
             $slider->img_name = $namePhotoProduct;
 
+            Image::make('media/photo-slider/'.$namePhotoProduct)->resize(880, 490)->save('media/photo-slider/'.$namePhotoProduct);
+
             if( $slider->save() ) {
                 return redirect()->route('admin.slider');
             }
@@ -61,7 +65,8 @@ class SliderController extends Controller
      * @param $id
      */
     public function destroy($id) {
-        dd($id);
+        Slider::destroy($id);
+        Session::flash('message', 'El Slider fue eliminado.');
         return redirect()->route('admin.slider');
     }
 

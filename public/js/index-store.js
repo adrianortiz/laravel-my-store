@@ -16,8 +16,8 @@
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 arrows: false,
-                dots: false
-
+                dots: true
+                // adaptiveHeight: true
             });
         },
 

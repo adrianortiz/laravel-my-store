@@ -29,7 +29,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ url('/') }}">Ver tienda</a></li>
+                <li><a href="{{ url('/') }}" target="_blank">Ver tienda</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hola Ortiz <span class="caret"></span></a>
                     <ul class="dropdown-menu">

@@ -6,6 +6,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('components/slick/slick.css') }}"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('components/slick/slick-theme.css') }}"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/index.css') }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
     @yield('extra-css')
     <title>@yield('title', 'Furniture')</title>
 </head>
@@ -128,6 +129,7 @@
     </div>
 </footer>
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('components/slick/slick.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/index-store.js') }}"></script>
 @yield('extra-scripts')

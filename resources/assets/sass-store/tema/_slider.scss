@@ -1,0 +1,34 @@
+.container-slider {
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: inline-block;
+  div {
+    img {
+      @include transition(.3s ease);
+      &:hover {
+        @include prefixer(transform, scale(1.1, 1.1));
+      }
+    }
+  }
+
+  .slider {
+    width: calc(100% - 311px - 10px);
+    height: 100%;
+    float: left;
+    overflow: hidden;
+  }
+
+  .slider-items {
+    width: 311px;
+    height: 100%;
+    float: right;
+    overflow: hidden;
+
+    img:nth-child(1) {
+      margin-bottom: 10px;
+    }
+  }
+}
+

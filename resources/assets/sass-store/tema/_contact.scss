@@ -1,0 +1,124 @@
+.contact-container {
+  margin-top: 30px;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.contact-img {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 10px;
+
+  img {
+    margin-top: -60px;
+    width: 100%;
+  }
+}
+
+.form-style {
+  padding-top: 30px;
+
+  label {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  input, textarea {
+    margin-top: 6px;
+    width: 100%;
+    height: 36px;
+    border: solid 0 transparent;
+    border-bottom: solid 2px $yellow-400;
+
+    &:focus {
+      border: solid 0 transparent;
+      border-bottom: solid 2px #3370E5;
+    }
+  }
+
+  textarea {
+    height: 100px;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    height: 46px;
+    background-color: rgba($yellow-400, 0.3);
+    border: solid 2px $yellow-400;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    color: $yellow-500;
+  }
+}
+
+#captcha-container {
+
+  #img-captcha {
+    width: 220px;
+    float: left;
+  }
+
+  .form-style {
+    @include prefixer(width, calc(100% - 260px));
+    float: right;
+  }
+
+  #img-captcha {
+    background-color: #303030;
+    padding: 10px;
+    padding-bottom: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 10px;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+
+        img {
+          margin-bottom: 10px;
+        }
+
+        a {
+          font-size: 12px;
+          font-weight: 300;
+          padding: 10px;
+          margin: 5px;
+          color: $yellow-400;
+          background-color: transparent;
+          border: solid 2px $yellow-400;
+          border-radius: 6px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.error {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  background-color: rgba(red, 0.2);
+  border: solid 2px red;
+  color: red;
+}
+
+.success {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  background-color: rgba(#2ED734, 0.2);
+  border: solid 2px #2ED734;
+  color: #2ED734;
+}
