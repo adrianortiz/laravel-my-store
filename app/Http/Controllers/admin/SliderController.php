@@ -18,7 +18,8 @@ class SliderController extends Controller
     }
 
     public function index() {
-        return view('admin/panel-slider');
+        $sliders = Slider::all();
+        return view('admin/panel-slider', compact('sliders'));
     }
 
     public function store(Request $request) {
@@ -27,23 +28,43 @@ class SliderController extends Controller
 
         if ($filePhotoSlider != null) {
 
-            $namePhotoProduct = 'product-' . \Auth::user()->id . Carbon::now()->second . $filePhotoSlider->getClientOriginalName();
+            $namePhotoProduct = 'slider-' . \Auth::user()->id . Carbon::now()->second . '-' . $filePhotoSlider->getClientOriginalName();
             \Storage::disk('photo_slider')->put($namePhotoProduct, \File::get($filePhotoSlider));
 
             $slider = new Slider();
             $slider->fill($request->all());
+            $slider->img_name = $namePhotoProduct;
 
-            if( $slider->save() )
-                // dd($request->all());
-                return view('admin/panel-slider');
+            if( $slider->save() ) {
+                $sliders = Slider::all();
+                return view('admin/panel-slider', compact('sliders'));
+            }
 
         }
 
         // abort(500);
-
     }
 
-    public function prueba() {
-        return view('admin/prueba');
+
+    /**
+     * Devuelve la vista de adminitración de los Sliders
+     * Con sus Sliders
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    private function GetViewSlider() {
+        $sliders = Slider::all();
+        return view('admin/panel-slider', compact('sliders'));
     }
+
+    /**
+     * Elimina un Slider del sistema
+     * mediante su identificador
+     * @param $id
+     */
+    public function destroy($id) {
+
+        $sliders = Slider::all();
+        return view('admin/panel-slider', compact('sliders'));
+    }
+
 }

@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [
+        'uses'  => 'FrontController@index',
+        'as'    => 'store.index'
+]);
 
 Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
 
@@ -23,8 +24,13 @@ Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
     ]);
 
     Route::post('slider', [
-        'uses' => 'SliderController@store',
+        'uses'  => 'SliderController@store',
         'as'    => 'admin.slider.store'
+    ]);
+
+    Route::delete('slider/{id}', [
+       'uses'   => 'SliderController@destroy',
+        'as'    => 'admin.slider.destroy'
     ]);
 
     Route::get('prueba', [

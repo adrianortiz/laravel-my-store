@@ -56,15 +56,20 @@
 
         <div class="panel-slider-container">
 
-            @for($i = 1; $i<= 6; $i++)
+            @foreach($sliders as $slider)
             <div class="panel-slider-container-item">
                 <div class="item-bg">
                     <a href="#0">Editar</a>
                     <a href="#0">Eliminar</a>
+
+                    {!! Form::open(['route' => ['admin.slider.destroy', $slider->id], 'method' => 'DELETE', 'id' => 'form-slider-destroy']) !!}
+                        <button type="submit" onclick="confirm('Deseas elimar')">Enviar</button>
+                    {!! Form::close() !!}
+
                 </div>
-                <img src="{{ asset('media/slider/img-' . $i . '.jpg') }}" alt="Imagen de slider" height="260" width="auto">
+                <img src="{{ asset('media/photo-slider/' . $slider->img_name ) }}" alt="Imagen de slider" height="260" width="auto">
             </div>
-            @endfor
+            @endforeach
 
         </div>
         <div class="bs-example" data-example-id="media-alignment">
