@@ -36,8 +36,7 @@ class SliderController extends Controller
             $slider->img_name = $namePhotoProduct;
 
             if( $slider->save() ) {
-                $sliders = Slider::all();
-                return view('admin/panel-slider', compact('sliders'));
+                return redirect()->route('admin.slider');
             }
 
         }
@@ -62,9 +61,8 @@ class SliderController extends Controller
      * @param $id
      */
     public function destroy($id) {
-
-        $sliders = Slider::all();
-        return view('admin/panel-slider', compact('sliders'));
+        dd($id);
+        return redirect()->route('admin.slider');
     }
 
 }

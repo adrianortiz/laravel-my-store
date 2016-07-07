@@ -23,16 +23,12 @@
 
         ConfigMenuMobile: function() {
 
-            var btnMenu = document.getElementById('menu-a');
-            var containerMenu = document.getElementById('header-menu');
-
-            btnMenu.addEventListener('click', function() {
-                containerMenu.classList.toggle('motrar-header');
+            $('#menu-a').click( function() {
+                $('#header-menu').toggleClass('motrar-header');
             });
 
-            window.addEventListener("resize", function() {
-                console.log(document.width);
-                containerMenu.classList.remove('motrar-header');
+            $(window).resize( function() {
+                $('#header-menu').removeClass('motrar-header');
             });
 
         }

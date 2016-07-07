@@ -5,15 +5,21 @@
 @section('content')
 
     <!-- Begin page content -->
-    <div class="container panel-container">
+    <div class="container panel-container" style="position: relative;">
         <div class="page-header">
             <h1>Slider <small>Panel</small></h1>
         </div>
-        <a href="#0" class="btn btn-info" data-toggle="modal" data-target="#modalSlider">Nueva imagen</a>
+
+        <div class="container-top-menu-panel" style="position: absolute; top: 40px; right: 20px;">
+            <a href="#0" class="btn btn-info" data-toggle="modal" data-target="#modalSlider">Nueva imagen</a>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="modalSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
+
+                {!! Form::open(['route' => 'admin.slider.store', 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -21,36 +27,32 @@
                     </div>
                     <div class="modal-body">
 
-                        {!! Form::open(['route' => 'admin.slider.store', 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
                             <div class="form-group">
                                 <label for="title" class="col-sm-2 control-label">Título</label>
                                 <div class="col-sm-10">
-                                    <input name="title" type="text" class="form-control" id="title" placeholder="Ingresa un título">
+                                    <input name="title" type="text" class="form-control" id="title" placeholder="Ingresa un título" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="dec" class="col-sm-2 control-label">Descripción</label>
                                 <div class="col-sm-10">
-                                    <textarea name="dec" class="form-control" rows="3" id="dec" placeholder="Ingresa una descripción"></textarea>
+                                    <textarea name="dec" class="form-control" rows="3" id="dec" placeholder="Ingresa una descripción" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="desc" class="col-sm-2 control-label">Imagen</label>
                                 <div class="col-sm-10">
-                                    {!! Form::file('img_name', ['accept' => 'image/jpg,image/png', 'id' => 'img_name', 'class' => 'form-control']) !!}
+                                    {!! Form::file('img_name', ['accept' => 'image/jpg,image/png', 'id' => 'img_name', 'class' => 'form-control', 'required']) !!}
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-default">Guardar</button>
-                                </div>
-                            </div>
-                        {!! Form::close() !!}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-info">Guardar</button>
                     </div>
                 </div>
+                {!! Form::close() !!}
+
             </div>
         </div>
 
