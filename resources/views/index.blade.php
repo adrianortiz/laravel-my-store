@@ -44,6 +44,7 @@
     </div>
 
     @foreach($productos as $producto)
+        @if($producto->available == 1)
         <div class="item">
             <div>
                 <img src="{{ asset('media/photo-items/' . $producto->img_name) }}" height="100%"/>
@@ -55,6 +56,7 @@
                 <li><input type="button" value="Añadir a la cesta"> <a href="#">Detalles</a></li>
             </ul>
         </div>
+        @endif
     @endforeach
 
 </section>
@@ -66,7 +68,7 @@
 
     @foreach($productos as $producto)
 
-        @if($producto->offert > 0)
+        @if($producto->offert > 0 && $producto->available == 1)
         <a href="#">
             <div class="item-special">
                 <div>
@@ -75,7 +77,7 @@
                 <div>
                     <ul>
                         <li><p style="padding-top: 18px">{{ $producto->desc }}</P></li>
-                        <li><span>{{ $producto->offert }}%</span><span>${{ $producto->price }}</span></li>
+                        <li><span>-{{ $producto->offert }}%</span><span>${{ $producto->price }}</span></li>
                     </ul>
                 </div>
             </div>

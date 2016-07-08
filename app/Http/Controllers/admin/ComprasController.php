@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Inventario;
+use App\Producto;
+use App\Proveedor;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +19,11 @@ class ComprasController extends Controller
      */
     public function index()
     {
-        return view('admin.panel-compras');
+        $inventarios = Inventario::join('products', 'inventario.products_id', '=' , 'products.id')
+            ->select('inventario.*', 'products.*')
+            ->get();
+
+        return view('admin.panel-compras', compact('inventarios'));
     }
 
     /**

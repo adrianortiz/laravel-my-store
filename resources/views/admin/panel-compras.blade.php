@@ -14,7 +14,7 @@
     </div>
 
     <div class="container-top-menu-panel">
-        <a href="#0" class="btn btn-info" data-toggle="modal" data-target="#modalSlider">Nuevo</a>
+        <a href="{{ route('admin.items') }}" class="btn btn-info">Gestionar productos</a>
     </div>
 
     @include('admin.partials.messages')
@@ -27,67 +27,50 @@
 
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Empresa</th>
-                        <th>Contacto</th>
-                        <th>Otra cosa</th>
-                        <th>Opciones</th>
+                        <th>Foto</th>
+                        <th>Información de la compra</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td width="60">
-                            <img src="{{ asset('media/icon/proveedor.png') }}" alt="Foto de proveedor" width="54" height="auto">
-                        </td>
-                        <td>
-                            <p>Hola a todos</p>
-                            <p>Hola a todos otra vez</p>
-                        </td>
-                        <td>
-                            <ul>
-                                <li>Telefono 1: 23423423</li>
-                                <li>Telefono 2: 23423423</li>
-                            </ul>
-                        </td>
-                        <td>Otto</td>
-                        <td width="160">
-                            <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default">Editar</button>
-                                <button type="button" class="btn btn-danger">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="{{ asset('media/icon/proveedor.png') }}" alt="Foto de proveedor" width="54" height="auto">
-                        </td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>Otto</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default">Editar</button>
-                                <button type="button" class="btn btn-danger">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="{{ asset('media/icon/proveedor.png') }}" alt="Foto de proveedor" width="54" height="auto">
-                        </td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>the Bird</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default">Editar</button>
-                                <button type="button" class="btn btn-danger">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
+
+                    @foreach($inventarios as $inventario)
+                        <tr>
+                            <td width="60">
+                                <div class="img-preview-mini" style="background-image: url('{{ asset('media/photo-items/' . $inventario->img_name) }}')">
+
+                                </div>
+                            </td>
+                            <td>
+
+                                <ul style="list-style: none; padding: 0;">
+                                    <li><h4>{{ $inventario->name }}</h4></li>
+                                    <li>{{ $inventario->updated_at }}</li>
+                                    <li><p>{{ $inventario->desc }}</p></li>
+                                    <li><kbd>{{ $inventario->quantity }}pz.</kbd> <code>${{ $inventario->price }}</code></li>
+                                    <li>Oferta: -{{ $inventario->offert }}%</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li><h5>Cantidad</h5></li>
+                                    <li><kbd>{{ $inventario->cantidad }}pz.</kbd></li>
+
+                                    <li><h5>Precio compra</h5></li>
+                                    <li><kbd>${{ $inventario->precio_compra }}</kbd></li>
+
+                                    <li><h5>Gasto total</h5></li>
+                                    <li><code>${{ ($inventario->cantidad * $inventario->precio_compra) }}</code></li>
+
+                                </ul>
+                            </td>
+                        </tr>
+                    @endforeach
+
                     </tbody>
 
                 </table>
+
             </div>
         </div>
 
@@ -106,7 +89,7 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading">Ayuda</h4>
-                    <p>Gestiona los productos de tu tienda, recurda que los proveedores y categorías se gestionan en sus respectivas vistas.</p>
+                    <p>Toma el control de tu tienda y no dejes que nada se te escape.</p>
                 </div>
             </div>
         </div>

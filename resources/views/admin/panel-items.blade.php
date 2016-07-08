@@ -50,8 +50,8 @@
                             <ul style="list-style: none; padding: 0;">
                                 <li><h4>{{ $producto->name }}</h4></li>
                                 <li>{{ $producto->desc }}</li>
-                                <li>{{ $producto->quantity }}pz. <code>${{ $producto->price }}</code></li>
-                                <li>Oferta: {{ $producto->offert }}%</li>
+                                <li><kbd>{{ $producto->quantity }}pz.</kbd> <code>${{ $producto->price }}</code></li>
+                                <li>Oferta: -{{ $producto->offert }}%</li>
                             </ul>
                         </td>
                         <td>
@@ -60,6 +60,12 @@
                                 <li>{{ $producto->name_category }}</li>
                                 <li><h5>Proveedor</h5></li>
                                 <li>{{ $producto->nom_empresa }}</li>
+
+                                @if($producto->available == 1)
+                                    <li><kbd>Ver en tienda</kbd></li>
+                                @else
+                                    <li><code>No ver en tienda</code></li>
+                                @endif
                             </ul>
                         </td>
                         <td width="160">
