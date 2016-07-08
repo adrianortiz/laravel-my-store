@@ -77,10 +77,10 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-        $categoria = Categoria::findOrFail($request->id);
-        $categoria->fill($request->all());
+        $categoria = Categoria::findOrFail($id);
+        $categoria->name=$request->name;
 
         if( $categoria->save() ) {
             return redirect()->route('admin.categorias');
