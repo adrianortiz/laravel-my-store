@@ -82,6 +82,11 @@ Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
         'as'    => 'admin.proveedores'
     ]);
 
+    Route::post('proveedores', [
+        'uses'  => 'ProveedoresController@store',
+        'as'    => 'admin.proveedores.store'
+    ]);
+
     /**
      * Rutas para adminitrar proveedores
      */

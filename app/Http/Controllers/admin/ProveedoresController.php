@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Correo;
+use App\Direccion;
+use App\Proveedor;
+use App\Telefono;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +20,12 @@ class ProveedoresController extends Controller
      */
     public function index()
     {
-        return view('admin.panel-proveedor');
+      $proveedores = Proveedor::join('telefonos', 'telefonos.proveedores_id', '=', 'proveedores.id')
+          ->join('direcciones', 'direcciones.proveedores_id', '=', 'proveedores.id')
+          ->join('correo', 'correo.proveedores_id', '=', 'proveedores.id')
+          ->select('*', 'telefonos.num AS num_tel')
+          ->get();
+        return view('admin.panel-proveedor', compact('proveedores'));
     }
 
     /**
@@ -37,7 +46,30 @@ class ProveedoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $proveedor = new Proveedor();
+        $proveedor->fill($request->all());
+        $proveedor->save();
+
+        $direccion = new Direccion();
+        $direccion->fill($request->all());
+        $direccion->proveedores_id=$proveedor->id;
+        $direccion->desc=$request->desc_dir;
+        $direccion->num=$request->num_dir;
+        $direccion->save();
+
+        $telefono = new Telefono();
+        $telefono->proveedores_id=$proveedor->id;
+        $telefono->desc=$request->desc_tel;
+        $telefono->num=$request->num_tel;
+        $telefono->save();
+
+        $correo = new Correo();
+        $correo->fill($request->all());
+        $correo->proveedores_id=$proveedor->id;
+        $correo->desc=$request->desc_mail;
+        $correo->save();
+
+        return \Redirect::route('admin.proveedores');
     }
 
     /**
