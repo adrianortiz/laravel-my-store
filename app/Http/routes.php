@@ -45,6 +45,11 @@ Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
         'as'    => 'admin.items'
     ]);
 
+    Route::post('items', [
+        'uses'  => 'ItemsController@store',
+        'as'    => 'admin.items.store'
+    ]);
+
     /**
      * Rutas para adminitrar Categorias
      */

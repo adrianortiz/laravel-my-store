@@ -37,7 +37,7 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd("Conectado a item store");
     }
 
     /**

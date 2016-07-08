@@ -14,7 +14,7 @@
     </div>
 
     <div class="container-top-menu-panel">
-        <a href="#0" class="btn btn-info" data-toggle="modal" data-target="#modalSlider">Nuevo</a>
+        <a href="#0" class="btn btn-info" data-toggle="modal" data-target="#modalNewProduct">Nuevo</a>
     </div>
 
     @include('admin.partials.messages')
@@ -115,54 +115,7 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="modalSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-
-        {!! Form::open(['route' => 'admin.slider.store', 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Nuevo producto</h4>
-            </div>
-            <div class="modal-body">
-
-                <div class="form-group">
-                    <label for="title" class="col-sm-2 control-label">Título</label>
-
-                    <div class="col-sm-10">
-                        <input name="title" type="text" class="form-control" id="title" placeholder="Ingresa un título"
-                               required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="dec" class="col-sm-2 control-label">Descripción</label>
-
-                    <div class="col-sm-10">
-                        <textarea name="dec" class="form-control" rows="3" id="dec"
-                                  placeholder="Ingresa una descripción" required></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="desc" class="col-sm-2 control-label">Imagen</label>
-
-                    <div class="col-sm-10">
-                        {!! Form::file('img_name', ['accept' => 'image/jpg,image/png', 'id' => 'img_name', 'class' => 'form-control', 'required']) !!}
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-info">Guardar</button>
-            </div>
-        </div>
-        {!! Form::close() !!}
-
-    </div>
-</div>
-
+@include('admin.partials.panel-modal-items')
 
 @endsection
 
