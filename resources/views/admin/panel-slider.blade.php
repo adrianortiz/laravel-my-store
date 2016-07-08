@@ -94,5 +94,6 @@
 @endsection
 
 @section('extra-scripts')
+    <script>$('header div ul li:nth-child(1) a').addClass('active-menu');</script>
     <script src=" {{ asset('js/panel-slider.js') }}"></script>
 @endsection

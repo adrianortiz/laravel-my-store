@@ -18,6 +18,9 @@ Route::get('/', [
 
 Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
 
+    /**
+     * Rutas para adminitrar el Slider
+     */
     Route::get('slider', [
         'uses'  => 'SliderController@index',
         'as'    => 'admin.slider'
@@ -33,9 +36,30 @@ Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
         'as'    => 'admin.slider.destroy'
     ]);
 
-    Route::get('prueba', [
-        'uses'  => 'SliderController@prueba',
-        'as'    => 'admin.prueba'
+
+    /**
+     * Rutas para adminitrar Items
+     */
+    Route::get('items', [
+        'uses'  => 'ItemsController@index',
+        'as'    => 'admin.items'
+    ]);
+
+    /**
+     * Rutas para adminitrar Categorias
+     */
+    Route::get('categorias', [
+        'uses'  => 'CategoriasController@index',
+        'as'    => 'admin.categorias'
+    ]);
+
+
+    /**
+     * Rutas para adminitrar proveedores
+     */
+    Route::get('proveedores', [
+        'uses'  => 'ProveedoresController@index',
+        'as'    => 'admin.proveedores'
     ]);
 
 

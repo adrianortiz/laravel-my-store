@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/panel.css') }}">
 
+    <style>.active-menu {color: #000; border-bottom: solid 2px #2856B5; }</style>
+
     @yield('extra-css')
     <title>@yield('title', 'App')</title>
 </head>
@@ -48,10 +50,9 @@
     <div>
         <ul>
             <li><a href="{{ route('admin.slider') }}">Slider</a></li>
-            <li><a href="#0">Items</a></li>
-            <li><a href="#0">Sections</a></li>
-            <li><a href="#0">Tags</a></li>
-            <li><a href="#0">Sales</a></li>
+            <li><a href="{{ route('admin.items') }}">Productos</a></li>
+            <li><a href="{{ route('admin.proveedores') }}">Proveedores</a></li>
+            <li><a href="{{ route('admin.categorias') }}">Categorias</a></li>
         </ul>
     </div>
 </header>
