@@ -67,6 +67,11 @@ return [
             'root'   => public_path('media/photo-slider'),
         ],
 
+        'photo_items' => [
+            'driver' => 'local',
+            'root'   => public_path('media/photo-items'),
+        ],
+
     ],
 
 ];

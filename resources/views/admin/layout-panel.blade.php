@@ -6,7 +6,17 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/panel.css') }}">
 
-    <style>.active-menu {color: #000; border-bottom: solid 2px #2856B5; }</style>
+    <style>
+        .active-menu {color: #000; border-bottom: solid 2px #2856B5; }
+        .img-preview-mini {
+            width: 100px;
+            height: 110px;
+            background-color: #E6E6E6;
+            background-size: cover;
+            background-position: center center;
+            border-radius: 4px;
+        }
+    </style>
 
     @yield('extra-css')
     <title>@yield('title', 'App')</title>

@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Categoria;
+use App\ImgProduct;
+use App\Inventario;
+use App\Producto;
+use App\Proveedor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class ItemsController extends Controller
 {
@@ -16,7 +24,14 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        return view('admin.panel-items');
+        $productos = Producto::join('categories', 'products.categories_id', '=' , 'categories.id')
+            ->join('proveedores', 'products.proveedores_id', '=', 'proveedores.id')
+            ->select('products.*', 'proveedores.nom_empresa', 'categories.name AS name_category')
+            ->get();
+
+        $proveedoresList = Proveedor::lists('nom_empresa', 'id');
+        $categoriasList = Categoria::lists('name', 'id');
+        return view('admin.panel-items', compact('productos','proveedoresList', 'categoriasList'));
     }
 
     /**
@@ -37,7 +52,59 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        dd("Conectado a item store");
+        // dd($request->all());
+
+        DB::beginTransaction();
+        try {
+
+            $producto = new Producto();
+
+            for ($i = 0; $i < count($request->file('img_name')); $i++) {
+
+                $filePhotoProduct = $request->file('img_name')[$i];
+
+                // Validate if object selected has data
+                if ($filePhotoProduct != null) {
+
+                    $namePhotoProduct = 'product-' . \Auth::user()->id . Carbon::now()->second . $filePhotoProduct->getClientOriginalName();
+                    \Storage::disk('photo_items')->put($namePhotoProduct, \File::get($filePhotoProduct));
+
+                    if( $i == 0) {
+                        $producto->fill($request->all());
+                        $producto->img_name = $namePhotoProduct;
+                        $producto->save();
+
+                    } else {
+                        $imgProduct = new ImgProduct([
+                            'img_name'      => $namePhotoProduct,
+                            'products_id'   => $producto->id
+                        ]);
+
+                        $imgProduct->save();
+                    }
+                }
+            }
+
+            $inventario = new Inventario([
+                'products_id'   => $producto->id,
+                'precio_venta'  => $request['price'],
+                'precio_compra' => $request['precio_compra'],
+                'cantidad'      => $request['quantity']
+            ]);
+
+            $inventario->save();
+
+            DB::commit();
+            Session::flash('message', 'Producto creado y añadido a las compras.');
+            return redirect()->route('admin.items');
+
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            // dd($e);
+            Session::flash('message', 'Ocurrio un error');
+            return redirect()->route('admin.items');
+        }
     }
 
     /**
