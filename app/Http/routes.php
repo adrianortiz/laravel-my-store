@@ -63,7 +63,7 @@ Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
         'as'    => 'admin.categorias.store'
     ]);
 
-    Route::put('categorias', [
+    Route::put('categorias/{id}', [
         'uses'  => 'CategoriasController@update',
         'as'    => 'admin.categorias.update'
     ]);

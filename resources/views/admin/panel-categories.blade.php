@@ -27,12 +27,48 @@
             <div class="thumbnail">
                 <img data-src="holder.js/100%x200" alt="100%x200" src="{{ asset('media/icon/category-2.png') }}" data-holder-rendered="true" style="width: 100%; height: auto; display: block;">
 
-                <div class="caption"><h3>Nombre de la categoria</h3>
-                    <p>{{$categoria->name}}</p>
+                <div class="caption"><h3>{{$categoria->name}}</h3>
+                    <p>Categoria</p>
                     <p>
-                        <a href="#" class="btn btn-info" role="button">Actualizar</a>
+
+                        <!-- Modal_Update -->
+                    <div class="modal fade" id="modalCategoriesUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+
+                            {!! Form::open(['route' => ['admin.categorias.update', $categoria->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Actualizar Categoria</h4>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+                                        <label for="title" class="col-sm-2 control-label">Categoria</label>
+
+                                        <div class="col-sm-10">
+                                            <input name="name" type="text" class="form-control" id="name" placeholder="Ingresa el nuevo nombre de la categoria"
+                                                   required>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-info">Guardar</button>
+                                </div>
+                            </div>
+                            {!! Form::close() !!}
+
+                        </div>
+                    </div>
+
+
 
                         {!! Form::open(['route' => ['admin.categorias.destroy', $categoria->id], 'method' => 'DELETE']) !!}
+                        <a href="#" class="btn btn-info"  data-toggle="modal" data-target="#modalCategoriesUpdate">Actualizar</a>
                         <button type="submit" class="btn btn-danger" role="button">Eliminar</button>
                         {!! Form::close() !!}
                     </p>
