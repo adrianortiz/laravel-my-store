@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class CategoriasController extends Controller
 {
@@ -17,8 +18,8 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        $categoria = Categoria::all();
-        return view('admin.panel-categories');
+        $categorias = Categoria::all();
+        return view('admin.panel-categories', compact('categorias'));
     }
 
     /**
@@ -89,6 +90,8 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Categoria::destroy($id);
+        //Session::flash('message', 'La categoria fue eliminada.');
+        return redirect()->route('admin.categorias');
     }
 }

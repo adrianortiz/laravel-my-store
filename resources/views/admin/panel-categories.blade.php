@@ -22,20 +22,24 @@
 
     <div class="row">
 
-
+        @foreach($categorias as $categoria)
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
                 <img data-src="holder.js/100%x200" alt="100%x200" src="{{ asset('media/icon/category-2.png') }}" data-holder-rendered="true" style="width: 100%; height: auto; display: block;">
 
                 <div class="caption"><h3>Nombre de la categoria</h3>
-                    <p>Categorias</p>
+                    <p>{{$categoria->name}}</p>
                     <p>
                         <a href="#" class="btn btn-info" role="button">Actualizar</a>
-                        <a href="#" class="btn btn-danger" role="button">Eliminar</a>
+
+                        {!! Form::open(['route' => ['admin.categorias.destroy', $categoria->id], 'method' => 'DELETE']) !!}
+                        <button type="submit" class="btn btn-danger" role="button">Eliminar</button>
+                        {!! Form::close() !!}
                     </p>
                 </div>
             </div>
         </div>
+            @endforeach
 
     </div>
 
