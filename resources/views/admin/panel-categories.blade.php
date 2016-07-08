@@ -14,7 +14,7 @@
     </div>
 
     <div class="container-top-menu-panel">
-        <a href="#0" class="btn btn-info" data-toggle="modal" data-target="#modalSlider">Nueva categoria</a>
+        <a href="#0" class="btn btn-info" data-toggle="modal" data-target="#modalCategories">Nueva categoria</a>
     </div>
 
     @include('admin.partials.messages')
@@ -22,19 +22,6 @@
 
     <div class="row">
 
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img data-src="holder.js/100%x200" alt="100%x200" src="{{ asset('media/icon/category-2.png') }}" data-holder-rendered="true" style="width: 100%; height: auto; display: block;">
-
-                <div class="caption"><h3>Nombre de la categoria</h3>
-                    <p>Categorias</p>
-                    <p>
-                        <a href="#" class="btn btn-info" role="button">Button</a>
-                        <a href="#" class="btn btn-default" role="button">Button</a>
-                    </p>
-                </div>
-            </div>
-        </div>
 
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
@@ -43,36 +30,8 @@
                 <div class="caption"><h3>Nombre de la categoria</h3>
                     <p>Categorias</p>
                     <p>
-                        <a href="#" class="btn btn-info" role="button">Button</a>
-                        <a href="#" class="btn btn-default" role="button">Button</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img data-src="holder.js/100%x200" alt="100%x200" src="{{ asset('media/icon/category-2.png') }}" data-holder-rendered="true" style="width: 100%; height: auto; display: block;">
-
-                <div class="caption"><h3>Nombre de la categoria</h3>
-                    <p>Categorias</p>
-                    <p>
-                        <a href="#" class="btn btn-info" role="button">Button</a>
-                        <a href="#" class="btn btn-default" role="button">Button</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img data-src="holder.js/100%x200" alt="100%x200" src="{{ asset('media/icon/category-2.png') }}" data-holder-rendered="true" style="width: 100%; height: auto; display: block;">
-
-                <div class="caption"><h3>Nombre de la categoria</h3>
-                    <p>Categorias</p>
-                    <p>
-                        <a href="#" class="btn btn-info" role="button">Button</a>
-                        <a href="#" class="btn btn-default" role="button">Button</a>
+                        <a href="#" class="btn btn-info" role="button">Actualizar</a>
+                        <a href="#" class="btn btn-danger" role="button">Eliminar</a>
                     </p>
                 </div>
             </div>
@@ -92,9 +51,8 @@
             <div class="media-body">
                 <h4 class="media-heading">Ayuda</h4>
 
-                <p>Gestiona las imagenes del Slider de tu tienda. Se recomienda subir imagenes con una resolución de
-                    <code>880 x 490 pixeles</code>. Tenga en cuenta que las imagenes que no cumplan con está cualidad
-                    serán modificadas.</p>
+                <p>Gestiona las categorias de los productos de tu tienda.
+                    Tenga en cuenta que solo se puede agregar una categoria a un producto.</p>
             </div>
         </div>
     </div>
@@ -102,42 +60,28 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="modalSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modalCategories" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
 
-        {!! Form::open(['route' => 'admin.slider.store', 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::open(['route' => 'admin.categorias.store', 'method' => 'POST', 'class' => 'form-horizontal']) !!}
 
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Nueva imagen para Slider</h4>
+                <h4 class="modal-title" id="myModalLabel">Nueva Categoria</h4>
             </div>
             <div class="modal-body">
 
                 <div class="form-group">
-                    <label for="title" class="col-sm-2 control-label">Título</label>
+                    <label for="title" class="col-sm-2 control-label">Categoria</label>
 
                     <div class="col-sm-10">
-                        <input name="title" type="text" class="form-control" id="title" placeholder="Ingresa un título"
+                        <input name="name" type="text" class="form-control" id="name" placeholder="Ingresa el nombre de la categoria"
                                required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="dec" class="col-sm-2 control-label">Descripción</label>
 
-                    <div class="col-sm-10">
-                        <textarea name="dec" class="form-control" rows="3" id="dec"
-                                  placeholder="Ingresa una descripción" required></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="desc" class="col-sm-2 control-label">Imagen</label>
-
-                    <div class="col-sm-10">
-                        {!! Form::file('img_name', ['accept' => 'image/jpg,image/png', 'id' => 'img_name', 'class' => 'form-control', 'required']) !!}
-                    </div>
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

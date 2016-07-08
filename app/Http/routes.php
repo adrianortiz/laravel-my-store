@@ -53,6 +53,21 @@ Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
         'as'    => 'admin.categorias'
     ]);
 
+    Route::post('categorias', [
+        'uses'  => 'CategoriasController@store',
+        'as'    => 'admin.categorias.store'
+    ]);
+
+    Route::put('categorias', [
+        'uses'  => 'CategoriasController@update',
+        'as'    => 'admin.categorias.update'
+    ]);
+
+    Route::delete('categorias/{id}', [
+        'uses'   => 'CategoriasController@destroy',
+        'as'    => 'admin.categorias.destroy'
+    ]);
+
 
     /**
      * Rutas para adminitrar proveedores

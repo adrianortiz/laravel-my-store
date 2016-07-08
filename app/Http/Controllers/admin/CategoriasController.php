@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Categoria;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,6 +17,7 @@ class CategoriasController extends Controller
      */
     public function index()
     {
+        $categoria = Categoria::all();
         return view('admin.panel-categories');
     }
 
@@ -37,7 +39,12 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = new Categoria();
+        $categoria->fill($request->all());
+
+        if( $categoria->save() ) {
+            return redirect()->route('admin.categorias');
+        }
     }
 
     /**
