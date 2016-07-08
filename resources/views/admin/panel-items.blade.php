@@ -15,7 +15,7 @@
 
     <div class="container-top-menu-panel">
         <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default">Agregar cantidad</button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalNewCompra">Añadir compra</button>
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNewProduct">Nuevo</button>
         </div>
     </div>
@@ -108,6 +108,7 @@
 </div>
 
 @include('admin.partials.panel-modal-items')
+@include('admin.partials.panel-modal-compra')
 
 @endsection
 

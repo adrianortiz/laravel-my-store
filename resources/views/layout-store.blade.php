@@ -21,11 +21,11 @@
                 <li><a href="#">Más vendidos</a></li>
                 <li><a href="#">Ofertas</a></li>
                 <li><a href="#">Fabricantes</a></li>
-                <li><a href="#">Comentarios</a></li>
-                <li><a href="contact.php">Contactos</a></li>
+                <li><a href="#">Contactos</a></li>
+                <li><a href="{{ url('/home') }}">Administración</a></li>
             </ul>
             <div id="menu-secundario">
-                <h2>Categorias</h2>
+                <h2>Secciones</h2>
                 @include('partials.menu-store')
             </div>
         </div>

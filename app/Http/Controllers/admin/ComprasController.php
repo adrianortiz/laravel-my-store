@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class ComprasController extends Controller
 {
@@ -20,6 +22,7 @@ class ComprasController extends Controller
     public function index()
     {
         $inventarios = Inventario::join('products', 'inventario.products_id', '=' , 'products.id')
+            ->orderBy('inventario.id', 'desc')
             ->select('inventario.*', 'products.*')
             ->get();
 
@@ -44,7 +47,28 @@ class ComprasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $inventario = new Inventario();
+            $inventario->fill($request->all());
+            $inventario->save();
+
+            $producto = Producto::findOrFail($request['products_id']);
+            $producto->price = $request['precio_venta'];
+            $producto->quantity = ($producto->quantity + $request['cantidad']);
+            $producto->save();
+
+            DB::commit();
+            Session::flash('message', 'Su compra se ha añadido a "Compras".');
+            return redirect()->route('admin.items');
+
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            // dd($e);
+            Session::flash('message', 'Ocurrio un error');
+            return redirect()->route('admin.items');
+        }
     }
 
     /**

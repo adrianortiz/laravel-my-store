@@ -27,11 +27,15 @@ class ItemsController extends Controller
         $productos = Producto::join('categories', 'products.categories_id', '=' , 'categories.id')
             ->join('proveedores', 'products.proveedores_id', '=', 'proveedores.id')
             ->select('products.*', 'proveedores.nom_empresa', 'categories.name AS name_category')
+            ->orderBy('products.id', 'desc')
             ->get();
 
         $proveedoresList = Proveedor::lists('nom_empresa', 'id');
         $categoriasList = Categoria::lists('name', 'id');
-        return view('admin.panel-items', compact('productos','proveedoresList', 'categoriasList'));
+
+        $productosList = Producto::lists('name', 'id');
+
+        return view('admin.panel-items', compact('productos','proveedoresList', 'categoriasList', 'productosList'));
     }
 
     /**

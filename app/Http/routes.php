@@ -95,6 +95,11 @@ Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
         'as'    => 'admin.compras'
     ]);
 
+    Route::post('compras', [
+        'uses'  => 'ComprasController@store',
+        'as'    => 'admin.compras.store'
+    ]);
+
 
 });
 

@@ -127,9 +127,11 @@
                     <button id="store-new-product" type="submit" class="btn btn-info">Guardar</button>
                 </div>
 
-                {!! Form::close() !!}
 
             </div>
+
+            {!! Form::close() !!}
+
         </div>
     </div>
 </div>
