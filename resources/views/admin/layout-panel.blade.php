@@ -51,8 +51,9 @@
         <ul>
             <li><a href="{{ route('admin.slider') }}">Slider</a></li>
             <li><a href="{{ route('admin.items') }}">Productos</a></li>
+            <li><a href="{{ route('admin.compras') }}">Compras</a></li>
             <li><a href="{{ route('admin.proveedores') }}">Proveedores</a></li>
-            <li><a href="{{ route('admin.categorias') }}">Categorias</a></li>
+            <li><a href="{{ route('admin.categorias') }}">Categorías</a></li>
         </ul>
     </div>
 </header>

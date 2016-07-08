@@ -62,6 +62,14 @@ Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
         'as'    => 'admin.proveedores'
     ]);
 
+    /**
+     * Rutas para adminitrar proveedores
+     */
+    Route::get('compras', [
+        'uses'  => 'ComprasController@index',
+        'as'    => 'admin.compras'
+    ]);
+
 
 });
 

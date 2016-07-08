@@ -1,6 +1,6 @@
 @extends('admin.layout-panel')
 
-@section('title', 'Panel Productos')
+@section('title', 'Panel Compras')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 <div class="container panel-container">
 
     <div class="page-header">
-        <h1>Productos
+        <h1>Compras
             <small>Panel</small>
         </h1>
     </div>
@@ -167,6 +167,6 @@
 @endsection
 
 @section('extra-scripts')
-    <script>$('header div ul li:nth-child(2) a').addClass('active-menu');</script>
+    <script>$('header div ul li:nth-child(3) a').addClass('active-menu');</script>
     <!-- <script src=" {{ asset('js/panel-slider.js') }}"></script> -->
 @endsection
