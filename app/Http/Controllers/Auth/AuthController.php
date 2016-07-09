@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace CodizerTienda\Http\Controllers\Auth;
 
-use App\User;
+use CodizerTienda\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use CodizerTienda\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

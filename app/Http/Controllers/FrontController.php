@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace CodizerTienda\Http\Controllers;
 
-use App\Categoria;
-use App\Producto;
-use App\Slider;
+use CodizerTienda\Categoria;
+use CodizerTienda\Producto;
+use CodizerTienda\Slider;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use CodizerTienda\Http\Requests;
 
 class FrontController extends Controller
 {

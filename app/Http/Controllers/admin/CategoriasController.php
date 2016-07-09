@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace CodizerTienda\Http\Controllers\Admin;
 
-use App\Categoria;
+use CodizerTienda\Categoria;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use CodizerTienda\Http\Requests;
+use CodizerTienda\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class CategoriasController extends Controller

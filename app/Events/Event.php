@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace CodizerTienda\Events;
 
 abstract class Event
 {

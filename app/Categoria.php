@@ -6,7 +6,7 @@
  * Time: 11:42 PM
  */
 
-namespace App;
+namespace CodizerTienda;
 use Illuminate\Database\Eloquent\Model;
 
 

@@ -117,7 +117,6 @@
             </div>
 
             <div class="modal-body">
-                <div class="form-group">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab"
@@ -263,7 +262,6 @@
                             </p>
                         </div>
                     </div>
-                </div>
             </div>
 
             <div class="modal-footer">

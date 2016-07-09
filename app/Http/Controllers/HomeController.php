@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace CodizerTienda\Http\Controllers;
 
-use App\Http\Requests;
+use CodizerTienda\Http\Requests;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

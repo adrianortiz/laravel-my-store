@@ -151,10 +151,10 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        CodizerTienda\Providers\AppServiceProvider::class,
+        CodizerTienda\Providers\AuthServiceProvider::class,
+        CodizerTienda\Providers\EventServiceProvider::class,
+        CodizerTienda\Providers\RouteServiceProvider::class,
 
         /*
          * My providers

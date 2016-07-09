@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace CodizerTienda\Http\Controllers\Admin;
 
-use App\Correo;
-use App\Direccion;
-use App\Proveedor;
-use App\Telefono;
+use CodizerTienda\Correo;
+use CodizerTienda\Direccion;
+use CodizerTienda\Proveedor;
+use CodizerTienda\Telefono;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use CodizerTienda\Http\Requests;
+use CodizerTienda\Http\Controllers\Controller;
 
 class ProveedoresController extends Controller
 {

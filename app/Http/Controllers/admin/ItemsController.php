@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace CodizerTienda\Http\Controllers\Admin;
 
-use App\Categoria;
-use App\ImgProduct;
-use App\Inventario;
-use App\Producto;
-use App\Proveedor;
+use CodizerTienda\Categoria;
+use CodizerTienda\ImgProduct;
+use CodizerTienda\Inventario;
+use CodizerTienda\Producto;
+use CodizerTienda\Proveedor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use CodizerTienda\Http\Requests;
+use CodizerTienda\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 

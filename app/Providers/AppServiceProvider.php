@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace CodizerTienda\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

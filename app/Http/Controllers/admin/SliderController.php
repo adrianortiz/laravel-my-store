@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace CodizerTienda\Http\Controllers\Admin;
 
-use App\Slider;
+use CodizerTienda\Slider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use CodizerTienda\Http\Requests;
+use CodizerTienda\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
 
