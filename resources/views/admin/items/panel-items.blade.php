@@ -36,7 +36,7 @@
                         <th>Opciones</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="list-products">
 
                     @foreach($productos as $producto)
                     <tr>
@@ -71,7 +71,7 @@
                         <td width="160">
                             <div class="btn-group" role="group" aria-label="...">
                                 <button type="button" class="btn btn-default">Ver</button>
-                                <button type="button" class="btn btn-default">Editar</button>
+                                <button type="button" class="btn btn-default btn-item-show" data-product="{{ $producto->producto_id }}"  data-toggle="modal" data-target="#modalUpdateProduct">Editar</button>
                             </div>
                         </td>
                     </tr>
@@ -107,8 +107,14 @@
     </div>
 </div>
 
-@include('admin.partials.panel-modal-items')
-@include('admin.partials.panel-modal-compra')
+
+{!! Form::open(['route' => 'admin.items.show', 'method' => 'GET', 'id' => 'form-products-to-show']) !!}
+    {!! Form::hidden('id',0, ['id' => 'id-product-to-show']) !!}
+{!! Form::close() !!}
+
+@include('admin.items.partials.modal-store-items')
+@include('admin.items.partials.modal-update-items')
+@include('admin.items.partials.panel-modal-compra')
 
 @endsection
 

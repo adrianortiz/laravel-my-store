@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 use CodizerTienda\Http\Requests;
 use CodizerTienda\Http\Controllers\Controller;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class CategoriasController extends Controller
 {
@@ -44,6 +45,7 @@ class CategoriasController extends Controller
         $categoria->fill($request->all());
 
         if( $categoria->save() ) {
+            Session::flash('message', 'Categoría creada.');
             return redirect()->route('admin.categorias');
         }
     }
@@ -77,14 +79,25 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->name=$request->name;
+        DB::beginTransaction();
+        try {
+            $categoria = Categoria::findOrFail($request->id);
+            $categoria->fill($request->all());
+            $categoria->save();
 
-        if( $categoria->save() ) {
+            Session::flash('message', 'Categoría actualizada.');
+
+            DB::commit();
+            return redirect()->route('admin.categorias');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            Session::flash('message', 'Ocurrio un problema');
             return redirect()->route('admin.categorias');
         }
+
     }
 
     /**
@@ -95,8 +108,19 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        Categoria::destroy($id);
-        //Session::flash('message', 'La categoria fue eliminada.');
-        return redirect()->route('admin.categorias');
+        DB::beginTransaction();
+        try {
+            Categoria::destroy($id);
+
+            Session::flash('message', 'Categoría eliminada.');
+
+            DB::commit();
+            return redirect()->route('admin.categorias');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            Session::flash('message', 'La categoría ha sido asignada y no puede eliminarse');
+            return redirect()->route('admin.categorias');
+        }
     }
 }

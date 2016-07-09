@@ -23,7 +23,7 @@ class SliderController extends Controller
 
     public function index() {
         $sliders = Slider::all();
-        return view('admin/panel-slider', compact('sliders'));
+        return view('admin.sliders.panel-slider', compact('sliders'));
     }
 
     public function store(Request $request) {

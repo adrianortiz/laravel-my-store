@@ -15,33 +15,40 @@
 
                     <div class="row col-md-7">
 
-                        <div class="col-xs-6 col-md-6">
-                            <img id="core-img-principal" src="{{ asset('/media/icon/upload-img-icon.png') }}" width="100%"/>
+                        <div class="col-xs-6 col-md-6 img-item-view">
+
+                            <div class="img-preview-general">
+                                <img id="core-img-principal" src="{{ asset('/media/icon/upload-img-icon.png') }}" width="140%"/>
+                            </div>
 
                             <div class="form-group">
                                 {!! Form::file('img_name[]', ['accept' => 'image/jpg,image/png', 'id' => 'core-file-img-principal', 'class' => 'form-control form-with-100 form-group-validate val_img', 'required']) !!}
                             </div>
                         </div>
 
-                        <div class="col-xs-6 col-md-6">
-                            <img id="core-img-2" src="{{ asset('/media/icon/upload-img-icon.png') }}" width="100%"/>
+                        <div class="col-xs-6 col-md-6 img-item-view">
+                            <div class="img-preview-general">
+                                <img id="core-img-2" src="{{ asset('/media/icon/upload-img-icon.png') }}" width="140%"/>
+                            </div>
 
                             <div class="form-group">
                                 {!! Form::file('img_name[]', ['accept' => 'image/jpg,image/png', 'id' => 'core-file-img-2', 'class' => 'form-control form-with-100']) !!}
                             </div>
                         </div>
 
-                        <div class="col-xs-6 col-md-6">
-                            <img id="core-img-3" src="{{ asset('/media/icon/upload-img-icon.png') }}" width="100%"/>
-
+                        <div class="col-xs-6 col-md-6 img-item-view">
+                            <div class="img-preview-general">
+                                <img id="core-img-3" src="{{ asset('/media/icon/upload-img-icon.png') }}" width="140%"/>
+                            </div>
                             <div class="form-group">
                                 {!! Form::file('img_name[]', ['accept' => 'image/jpg,image/png', 'id' => 'core-file-img-3', 'class' => 'form-control form-with-100']) !!}
                             </div>
                         </div>
 
-                        <div class="col-xs-6 col-md-6">
-                            <img id="core-img-4" src="{{ asset('/media/icon/upload-img-icon.png') }}" width="100%"/>
-
+                        <div class="col-xs-6 col-md-6 img-item-view">
+                            <div class="img-preview-general">
+                                <img id="core-img-4" src="{{ asset('/media/icon/upload-img-icon.png') }}" width="140%"/>
+                            </div>
                             <div class="form-group">
                                 {!! Form::file('img_name[]', ['accept' => 'image/jpg,image/png', 'id' => 'core-file-img-4', 'class' => 'form-control form-with-100']) !!}
                             </div>

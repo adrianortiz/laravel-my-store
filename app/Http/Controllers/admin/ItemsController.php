@@ -14,6 +14,7 @@ use CodizerTienda\Http\Requests;
 use CodizerTienda\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class ItemsController extends Controller
 {
@@ -26,7 +27,7 @@ class ItemsController extends Controller
     {
         $productos = Producto::join('categories', 'products.categories_id', '=' , 'categories.id')
             ->join('proveedores', 'products.proveedores_id', '=', 'proveedores.id')
-            ->select('products.*', 'proveedores.nom_empresa', 'categories.name AS name_category')
+            ->select('products.*', 'proveedores.nom_empresa', 'categories.name AS name_category', 'products.id AS producto_id')
             ->orderBy('products.id', 'desc')
             ->get();
 
@@ -35,7 +36,7 @@ class ItemsController extends Controller
 
         $productosList = Producto::lists('name', 'id');
 
-        return view('admin.panel-items', compact('productos','proveedoresList', 'categoriasList', 'productosList'));
+        return view('admin.items.panel-items', compact('productos','proveedoresList', 'categoriasList', 'productosList'));
     }
 
     /**
@@ -117,9 +118,31 @@ class ItemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        if ($request->ajax()) {
+
+            $producto = Producto::join('categories', 'products.categories_id', '=' , 'categories.id')
+                ->join('proveedores', 'products.proveedores_id', '=', 'proveedores.id')
+                ->select('products.*', 'proveedores.nom_empresa', 'categories.name AS name_category', 'products.id AS producto_id')
+                ->orderBy('products.id', 'desc')
+                ->where('products.id', $request['id'])->first();
+
+            $images = ImgProduct::where('products_id', $request['id'])->get();
+
+            $url = URL::to('/') . '/media/photo-items/';
+            $urlIcon = URL::to('/') . '/media/icon/upload-img-icon.png';
+
+            return response()->json([
+                'result'    => 'Conectado ' .$request['id'],
+                'url'       => $url,
+                'product'   => $producto,
+                'images'    => $images,
+                'urlIcon'  => $urlIcon
+            ]);
+        }
+
+        abort(404);
     }
 
     /**
@@ -140,9 +163,14 @@ class ItemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $producto = Producto::findOrFail($request->id);
+        $producto->fill($request->all());
+        $producto->save();
+
+        Session::flash('message', 'Producto actualizado.');
+        return redirect()->route('admin.items');
     }
 
     /**

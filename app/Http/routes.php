@@ -52,6 +52,16 @@ Route::group(['middleware' => 'auth'], function () {
             'as' => 'admin.items.store'
         ]);
 
+        Route::get('items/show', [
+            'uses' => 'ItemsController@show',
+            'as' => 'admin.items.show'
+        ]);
+
+        Route::put('items/update', [
+            'uses' => 'ItemsController@update',
+            'as' => 'admin.items.update'
+        ]);
+
         /**
          * Rutas para adminitrar Categorias
          */
