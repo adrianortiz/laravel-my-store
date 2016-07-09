@@ -69,10 +69,19 @@
                             </ul>
                         </td>
                         <td width="160">
-                            <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default">Ver</button>
-                                <button type="button" class="btn btn-default btn-item-show" data-product="{{ $producto->producto_id }}"  data-toggle="modal" data-target="#modalUpdateProduct">Editar</button>
-                            </div>
+
+                            @if($producto->available == 1)
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <a href="{{ route('store.show.item', [$producto->producto_id, \Illuminate\Support\Str::slug($producto->name)]) }}" target="_blank" class="btn btn-default">Ver</a>
+                                    <button type="button" class="btn btn-default btn-item-show" data-product="{{ $producto->producto_id }}"  data-toggle="modal" data-target="#modalUpdateProduct">Editar</button>
+                                </div>
+                            @else
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <button type="button" class="btn btn-default btn-item-show" data-product="{{ $producto->producto_id }}"  data-toggle="modal" data-target="#modalUpdateProduct">Editar</button>
+                                </div>
+                            @endif
+
+
                         </td>
                     </tr>
                     @endforeach

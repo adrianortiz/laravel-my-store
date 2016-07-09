@@ -115,7 +115,7 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                {!! Form::number('id', '0', ['id' => 'id_up', 'class'=> 'form-control', 'required']) !!}
+                                {!! Form::hidden('id', '0', ['id' => 'id_up', 'class'=> 'form-control', 'required']) !!}
                             </div>
                         </div>
 

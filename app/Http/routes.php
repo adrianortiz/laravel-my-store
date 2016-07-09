@@ -16,12 +16,22 @@ Route::get('/', [
     'as' => 'store.index'
 ]);
 
+Route::get('/item/{id}/{slug}', [
+    'uses'  => 'FrontController@showItems',
+    'as'    => 'store.show.item'
+]);
+
+Route::get('categoria/{id}/{slug}', [
+    'uses'  => 'FrontController@showItemsByCategory',
+    'as'    => 'store.show.item.category'
+]);
+
 Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
 
         /**
-         * Rutas para adminitrar el Slider
+         * Rutas para administrar el Slider
          */
         Route::get('slider', [
             'uses' => 'SliderController@index',
@@ -40,7 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         /**
-         * Rutas para adminitrar Items
+         * Rutas para administrar Items
          */
         Route::get('items', [
             'uses' => 'ItemsController@index',
@@ -63,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
 
         /**
-         * Rutas para adminitrar Categorias
+         * Rutas para administrar Categorias
          */
         Route::get('categorias', [
             'uses' => 'CategoriasController@index',
@@ -87,7 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         /**
-         * Rutas para adminitrar proveedores
+         * Rutas para administrar proveedores
          */
         Route::get('proveedores', [
             'uses' => 'ProveedoresController@index',
@@ -100,7 +110,7 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
 
         /**
-         * Rutas para adminitrar proveedores
+         * Rutas para administrar proveedores
          */
         Route::get('compras', [
             'uses' => 'ComprasController@index',

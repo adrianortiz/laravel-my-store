@@ -15,7 +15,7 @@
     <nav>
         <div id="menu-container">
             <ul>
-                <li><a href="index.php" class="menu-selected">Inicio</a></li>
+                <li><a href="{{ url('/') }}" class="menu-selected">Inicio</a></li>
                 <li><a href="#">Nuevo</a></li>
                 <li><a href="#">Destacados</a></li>
                 <li><a href="#">Más vendidos</a></li>
@@ -44,7 +44,7 @@
 <div id="title-container">
     <div>
         <button id="menu-a">---</button>
-        <a href="index.php">
+        <a href="{{ url('/') }}">
             <img src="{{ asset('media/logo.png') }}" id="logo" width="239" height="65">
         </a>
         <ul id="cart-container-global">

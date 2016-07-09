@@ -51,9 +51,9 @@
             </div>
             <ul>
                 <li>${{ $producto->price }}</li>
-                <li><a href="#">{{ $producto->name }}</a></li>
-                <li><a href="#">{{ $producto->desc }}</a></li>
-                <li><input type="button" value="Añadir a la cesta"> <a href="#">Detalles</a></li>
+                <li><a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">{{ $producto->name }}</a></li>
+                <li><a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">{{ $producto->desc }}</a></li>
+                <li><input type="button" value="Añadir a la cesta"> <a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">Detalles</a></li>
             </ul>
         </div>
         @endif
@@ -69,7 +69,7 @@
     @foreach($productos as $producto)
 
         @if($producto->offert > 0 && $producto->available == 1)
-        <a href="#">
+        <a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">
             <div class="item-special">
                 <div>
                     <img src="{{ asset('media/photo-items/' . $producto->img_name) }}" width="100" height="auto"/>
@@ -91,7 +91,7 @@
     </div>
 
     @foreach($categorias as $categoria)
-        <a href="#">
+        <a href="{{ route('store.show.item.category', [$categoria->id, \Illuminate\Support\Str::slug($categoria->name)]) }}">
             <div class="item-special" style="height: 66px">
                 <div>
                     <img src="{{ asset('media/icon/category.png') }}" width="46" height="46" style="margin-top: 6px; margin-left: 8px;"/>
