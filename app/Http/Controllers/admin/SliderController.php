@@ -14,10 +14,12 @@ use Intervention\Image\Facades\Image;
 class SliderController extends Controller
 {
 
+    /*
     public function __construct()
     {
         $this->middleware('auth');
     }
+    */
 
     public function index() {
         $sliders = Slider::all();
