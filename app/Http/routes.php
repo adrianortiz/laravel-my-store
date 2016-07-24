@@ -109,8 +109,23 @@ Route::group(['middleware' => 'auth'], function () {
             'as' => 'admin.proveedores.store'
         ]);
 
+        Route::put('proveedores/update', [
+            'uses' => 'ProveedoresController@update',
+            'as' => 'admin.proveedores.update'
+        ]);
+
+        Route::delete('proveedores/delete/{id}', [
+            'uses' => 'ProveedoresController@destroy',
+            'as' => 'admin.proveedores.destroy'
+        ]);
+
+        Route::get('proveedores/show/{id}', [
+            'uses' => 'ProveedoresController@show',
+            'as' => 'admin.proveedores.show'
+        ]);
+
         /**
-         * Rutas para administrar proveedores
+         * Rutas para administrar compas
          */
         Route::get('compras', [
             'uses' => 'ComprasController@index',
