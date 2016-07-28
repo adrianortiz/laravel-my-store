@@ -46,17 +46,14 @@
                     var url = form.attr('action').replace('IDDel', id);
                     var data = form.serialize();
 
-                    $('#modalDelete').modal({
-                        show: 'true'
-                    });
+                    $('#modalDelete').modal('show');
 
 
                     $('#btn-eliminar').click(function () {
-                        $('#modalDelete').modal({
-                            show: 'false'
-                        });
+                        $('#modalDelete').modal('hide');
 
                         $.post(url, data, function (result) {
+                            console.log(result);
                             alert(result);
                             proveedor.fadeOut();
                         }).fail(function () {

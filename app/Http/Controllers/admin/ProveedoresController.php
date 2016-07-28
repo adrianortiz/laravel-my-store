@@ -142,8 +142,7 @@ class ProveedoresController extends Controller
             $message = 'Proveedor eliminado.';
         } catch (\Exception $e) {
             DB::rollback();
-
-            $message = 'Ocurrio un problema';
+            return  'Ocurrio un problema';
         }
         if ($request->ajax()) {
             return $message;
