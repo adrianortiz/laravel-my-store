@@ -1,3 +1,10 @@
+# Tienda
+#### Carrito de compras basado en Laravel Framework
+
+Visita mi portafolio en [Pinterest](https://www.pinterest.com/codizerdev/portafolio/) o mi sitio web [Codizer](http://codizer.com/).
+
+![Alt text](https://s-media-cache-ak0.pinimg.com/originals/c5/fa/f0/c5faf004dac592af5e2cc5d72a237be5.png "Tienda CMS Laravel - Store")
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
