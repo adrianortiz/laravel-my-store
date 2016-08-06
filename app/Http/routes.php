@@ -26,121 +26,139 @@ Route::get('categoria/{id}/{slug}', [
     'as'    => 'store.show.item.category'
 ]);
 
+
+
+
+// USO DE MIDDLEWARES
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
-
-        /**
-         * Rutas para administrar el Slider
-         */
-        Route::get('slider', [
-            'uses' => 'SliderController@index',
-            'as' => 'admin.slider'
-        ]);
-
-        Route::post('slider', [
-            'uses' => 'SliderController@store',
-            'as' => 'admin.slider.store'
-        ]);
-
-        Route::delete('slider/{id}', [
-            'uses' => 'SliderController@destroy',
-            'as' => 'admin.slider.destroy'
-        ]);
 
 
-        /**
-         * Rutas para administrar Items
-         */
-        Route::get('items', [
-            'uses' => 'ItemsController@index',
-            'as' => 'admin.items'
-        ]);
-
-        Route::post('items', [
-            'uses' => 'ItemsController@store',
-            'as' => 'admin.items.store'
-        ]);
-
-        Route::get('items/show', [
-            'uses' => 'ItemsController@show',
-            'as' => 'admin.items.show'
-        ]);
-
-        Route::put('items/update', [
-            'uses' => 'ItemsController@update',
-            'as' => 'admin.items.update'
-        ]);
-
-        /**
-         * Rutas para administrar Categorias
-         */
-        Route::get('categorias', [
-            'uses' => 'CategoriasController@index',
-            'as' => 'admin.categorias'
-        ]);
-
-        Route::post('categorias', [
-            'uses' => 'CategoriasController@store',
-            'as' => 'admin.categorias.store'
-        ]);
-
-        Route::put('categorias/{id}', [
-            'uses' => 'CategoriasController@update',
-            'as' => 'admin.categorias.update'
-        ]);
-
-        Route::delete('categorias/{id}', [
-            'uses' => 'CategoriasController@destroy',
-            'as' => 'admin.categorias.destroy'
-        ]);
 
 
-        /**
-         * Rutas para administrar proveedores
-         */
-        Route::get('proveedores', [
-            'uses' => 'ProveedoresController@index',
-            'as' => 'admin.proveedores'
-        ]);
 
-        Route::post('proveedores', [
-            'uses' => 'ProveedoresController@store',
-            'as' => 'admin.proveedores.store'
-        ]);
 
-        Route::put('proveedores/update', [
-            'uses' => 'ProveedoresController@update',
-            'as' => 'admin.proveedores.update'
-        ]);
 
-        Route::delete('proveedores/delete/{id}', [
-            'uses' => 'ProveedoresController@destroy',
-            'as' => 'admin.proveedores.destroy'
-        ]);
+    Route::group(['middleware' => 'type.admin'], function () {
 
-        Route::get('proveedores/show/{id}', [
-            'uses' => 'ProveedoresController@show',
-            'as' => 'admin.proveedores.show'
-        ]);
+        Route::get('/home', 'HomeController@index');
 
-        /**
-         * Rutas para administrar compas
-         */
-        Route::get('compras', [
-            'uses' => 'ComprasController@index',
-            'as' => 'admin.compras'
-        ]);
 
-        Route::post('compras', [
-            'uses' => 'ComprasController@store',
-            'as' => 'admin.compras.store'
-        ]);
+        // RUTAS CON PREFIJO admin
+        Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
+
+            /**
+             * Rutas para administrar el Slider
+             */
+            Route::get('slider', [
+                'uses' => 'SliderController@index',
+                'as' => 'admin.slider'
+            ]);
+
+            Route::post('slider', [
+                'uses' => 'SliderController@store',
+                'as' => 'admin.slider.store'
+            ]);
+
+            Route::delete('slider/{id}', [
+                'uses' => 'SliderController@destroy',
+                'as' => 'admin.slider.destroy'
+            ]);
+
+
+            /**
+             * Rutas para administrar Items
+             */
+            Route::get('items', [
+                'uses' => 'ItemsController@index',
+                'as' => 'admin.items'
+            ]);
+
+            Route::post('items', [
+                'uses' => 'ItemsController@store',
+                'as' => 'admin.items.store'
+            ]);
+
+            Route::get('items/show', [
+                'uses' => 'ItemsController@show',
+                'as' => 'admin.items.show'
+            ]);
+
+            Route::put('items/update', [
+                'uses' => 'ItemsController@update',
+                'as' => 'admin.items.update'
+            ]);
+
+            /**
+             * Rutas para administrar Categorias
+             */
+            Route::get('categorias', [
+                'uses' => 'CategoriasController@index',
+                'as' => 'admin.categorias'
+            ]);
+
+            Route::post('categorias', [
+                'uses' => 'CategoriasController@store',
+                'as' => 'admin.categorias.store'
+            ]);
+
+            Route::put('categorias/{id}', [
+                'uses' => 'CategoriasController@update',
+                'as' => 'admin.categorias.update'
+            ]);
+
+            Route::delete('categorias/{id}', [
+                'uses' => 'CategoriasController@destroy',
+                'as' => 'admin.categorias.destroy'
+            ]);
+
+
+            /**
+             * Rutas para administrar proveedores
+             */
+            Route::get('proveedores', [
+                'uses' => 'ProveedoresController@index',
+                'as' => 'admin.proveedores'
+            ]);
+
+            Route::post('proveedores', [
+                'uses' => 'ProveedoresController@store',
+                'as' => 'admin.proveedores.store'
+            ]);
+
+            Route::put('proveedores/update', [
+                'uses' => 'ProveedoresController@update',
+                'as' => 'admin.proveedores.update'
+            ]);
+
+            Route::delete('proveedores/delete/{id}', [
+                'uses' => 'ProveedoresController@destroy',
+                'as' => 'admin.proveedores.destroy'
+            ]);
+
+            Route::get('proveedores/show/{id}', [
+                'uses' => 'ProveedoresController@show',
+                'as' => 'admin.proveedores.show'
+            ]);
+
+            /**
+             * Rutas para administrar compras
+             */
+            Route::get('compras', [
+                'uses' => 'ComprasController@index',
+                'as' => 'admin.compras'
+            ]);
+
+            Route::post('compras', [
+                'uses' => 'ComprasController@store',
+                'as' => 'admin.compras.store'
+            ]);
+
+        });
 
     });
+
 
 });
 
 Route::auth();
-
-Route::get('/home', 'HomeController@index');
