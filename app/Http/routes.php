@@ -26,17 +26,31 @@ Route::get('categoria/{id}/{slug}', [
     'as'    => 'store.show.item.category'
 ]);
 
+Route::get('insert', 'Coustumer\CoustumerController@index');
+Route::post('insert', 'Coustumer\CoustumerController@create');
 
+Route::get('show', [
+    'uses'  => 'Coustumer\CoustumerController@show',
+    'as'    => 'coustumer.show'
+]);
+
+Route::put('coustumer/{id}', [
+    'uses' => 'Coustumer\CoustumerController@update',
+    'as' => 'coustumer.update'
+]);
+
+Route::delete('coustumer/{id}', [
+    'uses' => 'Coustumer\CoustumerController@destroy',
+    'as' => 'coustumer.destroy'
+]);
 
 
 // USO DE MIDDLEWARES
 Route::group(['middleware' => 'auth'], function () {
 
-
-
-
-
-
+//    Route::group(['prefix' => '/', 'namespace' => 'Coustumer'], function(){
+//
+//    });
 
 
     Route::group(['middleware' => 'type.admin'], function () {

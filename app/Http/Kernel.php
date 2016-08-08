@@ -52,5 +52,6 @@ class Kernel extends HttpKernel
 
         /** Nuestros Middlewares */
         'type.admin'    => \CodizerTienda\Http\Middleware\AdminMiddleware::class,
+        'type.coustumer' => \CodizerTienda\Http\Middleware\UserMiddleware::class
     ];
 }
