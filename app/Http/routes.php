@@ -34,7 +34,12 @@ Route::get('show', [
     'as'    => 'coustumer.show'
 ]);
 
-Route::put('coustumer/{id}', [
+Route::get('edit/{id}', [
+    'uses'  => 'Coustumer\CoustumerController@edit',
+    'as'    => 'coustumer.edit'
+]);
+
+Route::put('coustumer/update', [
     'uses' => 'Coustumer\CoustumerController@update',
     'as' => 'coustumer.update'
 ]);

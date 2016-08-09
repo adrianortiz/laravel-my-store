@@ -26,15 +26,18 @@ class CoustumerController extends Controller
         $user->type = 'coustumer';
         $user->save();
 
-        return redirect()->to('/');
+        return redirect()->route('coustumer.show');
     }
 
-    public function edit(){
-
+    public function edit($id){
+        $user = \DB::table('users')
+            ->select('id', 'name', 'email', 'password')
+            ->where('users.id', $id)
+            ->get();
+        return view('users.edit', compact('user'));
     }
 
     public function update(Request $request){
-        dd(request()->all());
         \DB::beginTransaction();
         try {
             $coustumer = User::findOrFail($request->id);
@@ -75,7 +78,6 @@ class CoustumerController extends Controller
             ->select('id', 'name', 'email', 'type')
             ->where('users.type', 'coustumer')
             ->get();
-
         return view('users.show', compact('users'));
     }
 
