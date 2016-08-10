@@ -8,3 +8,8 @@ Homestead.json
 .idea
 .sass-cache
 .tags
+
+/public/media/photo-items/*
+/public/media/photo-slider/*
+!/public/media/photo-slider/slider.png
+/public/media/slider/*
