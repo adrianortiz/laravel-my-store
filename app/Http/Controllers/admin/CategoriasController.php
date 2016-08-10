@@ -20,7 +20,8 @@ class CategoriasController extends Controller
     public function index()
     {
         $categorias = Categoria::all();
-        return view('admin.panel-categories', compact('categorias'));
+        $modal=false;
+        return view('admin.panel-categories', compact('categorias'),compact('modal'));
     }
 
     /**
@@ -58,7 +59,7 @@ class CategoriasController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -69,7 +70,14 @@ class CategoriasController extends Controller
      */
     public function edit($id)
     {
-        //
+      $categorias = Categoria::all();
+      $categoria = Categoria::where('id', $id)
+          ->select('*')
+          ->get();
+
+      $modal=true;
+
+        return view('admin.panel-categories',compact('categorias'), compact('categoria'))->with('modal',$modal);
     }
 
     /**
@@ -79,7 +87,7 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         DB::beginTransaction();
         try {
@@ -97,7 +105,6 @@ class CategoriasController extends Controller
             Session::flash('message', 'Ocurrio un problema');
             return redirect()->route('admin.categorias');
         }
-
     }
 
     /**

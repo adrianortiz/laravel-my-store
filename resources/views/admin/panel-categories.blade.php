@@ -30,53 +30,14 @@
                 <div class="caption"><h3>{{$categoria->name}}</h3>
                     <p>Categoria</p>
                     <p>
-
-
-
                         {!! Form::open(['route' => ['admin.categorias.destroy', $categoria->id], 'method' => 'DELETE']) !!}
-                        <a href="#" class="btn btn-info"  data-toggle="modal" data-target="#modalCategoriesUpdate">Actualizar</a>
+                        <a href="{{route('admin.categorias.editar',$categoria)}}" class="btn btn-info" id="btnUpdate" data-toggle="modal" data-target="#modalCategoriesUpdate">Actualizar</a>
                         <button type="submit" class="btn btn-danger" role="button">Eliminar</button>
                         {!! Form::close() !!}
                     </p>
                 </div>
             </div>
         </div>
-
-
-            <!-- Modal_Update -->
-            <div class="modal fade" id="modalCategoriesUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-
-                    {!! Form::open(['route' => ['admin.categorias.update', $categoria->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
-
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Actualizar Categoria</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div class="form-group">
-                                <label for="title" class="col-sm-2 control-label">Categoria</label>
-
-                                <div class="col-sm-10">
-                                    <input name="name" type="text" class="form-control" id="name" placeholder="Ingresa el nuevo nombre de la categoria"
-                                           required>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-info">Guardar</button>
-                        </div>
-                    </div>
-                    {!! Form::close() !!}
-
-                </div>
-            </div>
-
 
             @endforeach
 
@@ -102,7 +63,41 @@
 </div>
 
 
-<!-- Modal -->
+@if($modal==true)
+<!-- Modal_Update -->
+<div class="modal fade" id="modalCategoriesUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+
+        {!! Form::model($categorias, ['route' => ['admin.categorias.update', $categorias], 'method' => 'PUT', 'class' => 'form-horizontal', 'id' => 'modalUpdate']) !!}
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Actualizar Categoria</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">Categoria</label>
+
+                    <div class="col-sm-10">
+                        {!! Form::text('name', old('name'), ['id' => 'idName', 'class' => 'form-control', 'required']) !!}
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-info">Guardar</button>
+            </div>
+        </div>
+        {!! Form::close() !!}
+
+    </div>
+</div>
+@endif
+
+
+<!-- Modal INSERT-->
 <div class="modal fade" id="modalCategories" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
 
@@ -140,6 +135,16 @@
 @endsection
 
 @section('extra-scripts')
+
+    <script>
+        $(document).ready(function(){
+            @if($modal == true)
+                $('#modalCategoriesUpdate').modal('show');
+             @else
+                $('#modalCategoriesUpdate').modal('hide');
+             @endif
+        });
+    </script>
+
     <script>$('header div ul li:nth-child(5) a').addClass('active-menu');</script>
-    <!-- <script src=" {{ asset('js/panel-slider.js') }}"></script> -->
 @endsection

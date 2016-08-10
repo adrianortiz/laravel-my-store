@@ -131,6 +131,12 @@ Route::group(['middleware' => 'auth'], function () {
                 'as' => 'admin.categorias.destroy'
             ]);
 
+            Route::get('categorias/actualizar/{id}', [
+                'uses' => 'CategoriasController@edit',
+                'as' => 'admin.categorias.editar'
+            ]);
+
+
 
             /**
              * Rutas para administrar proveedores
