@@ -179,6 +179,21 @@ Route::group(['middleware' => 'auth'], function () {
                 'as' => 'admin.compras.store'
             ]);
 
+            Route::get('ventas', [
+                'uses' => 'CartController@index',
+                'as' => 'user.carrito'
+            ]);
+
+            Route::post('ventas', [
+                'uses' => 'CartController@store',
+                'as' => 'user.carrito.store'
+            ]);
+
+
+
+
+
+
         });
 
     });
