@@ -182,7 +182,7 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::get('ventas', [
                 'uses' => 'CartController@index',
-                'as' => 'user.carrito'
+                'as' => 'admin.carrito'
             ]);
 
             Route::post('ventas', [

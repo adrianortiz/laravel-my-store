@@ -4,7 +4,6 @@ namespace CodizerTienda\Http\Controllers;
 
 use App\Ventas;
 use Illuminate\Http\Request;
-
 use CodizerTienda\Http\Requests;
 
 class CartController extends Controller
@@ -22,7 +21,7 @@ class CartController extends Controller
             ->select('users_has_ventas.*', 'ventas_has_products.*','ventas.*')
             ->get();
 
-        return view('carrito', compact('carrito'));
+        return view('admin.carrito', compact('carrito'));
     }
 
     /**
