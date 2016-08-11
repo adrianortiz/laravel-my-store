@@ -1,13 +1,18 @@
 <?php
 
-namespace CodizerTienda;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Carrito extends Model
+/**
+ * App\Venta
+ *
+ * @mixin \Eloquent
+ */
+class Ventas extends Model
 {
     protected $table = 'ventas';
     protected $primaryKey = 'id';
-    protected $fillable = ['user_id'];
+    protected $fillable = ['user_id','total'];
     public $timestamps = false;
 }

@@ -2,7 +2,7 @@
 
 namespace CodizerTienda\Http\Controllers;
 
-use CodizerTienda\Carrito;
+use App\Ventas;
 use Illuminate\Http\Request;
 
 use CodizerTienda\Http\Requests;
@@ -16,7 +16,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $carrito = Carrito::join('users', 'ventas.users_id', '=' , 'users.id')
+        $carrito = Ventas::join('users', 'ventas.users_id', '=' , 'users.id')
             ->select('carrito.*')
             ->get();
 
