@@ -50,7 +50,6 @@
                     });
 
                     function fillUpdate(data) {
-                        $('#form-show').attr('action').replace('IDShow', id);
                         $('#idUp').val(data[0].id);
                         $('#nom_empresaUp').val(data[0].nom_empresa);
                         $('#nom_contactoUp').val(data[0].nom_contacto);

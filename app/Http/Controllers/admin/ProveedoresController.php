@@ -95,7 +95,7 @@ class ProveedoresController extends Controller
         return Proveedor::join('telefonos', 'telefonos.proveedores_id', '=', 'proveedores.id')
             ->join('direcciones', 'direcciones.proveedores_id', '=', 'proveedores.id')
             ->join('correo', 'correo.proveedores_id', '=', 'proveedores.id')
-            ->where('Proveedores.id', $id)
+            ->where('proveedores.id', $id)
             ->select('*', 'telefonos.num AS num_tel', 'direcciones.num AS num_dir', 'direcciones.desc AS desc_dir', 'telefonos.desc AS desc_tel', 'correo.desc AS desc_mail')
             ->get();
     }
