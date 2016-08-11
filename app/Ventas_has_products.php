@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace CodizerTienda;
 
 use Illuminate\Database\Eloquent\Model;
 

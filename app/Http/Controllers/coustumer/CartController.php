@@ -1,13 +1,23 @@
 <?php
 
-namespace CodizerTienda\Http\Controllers;
+namespace CodizerTienda\Http\Controllers\Coustumer;
 
-use App\Ventas;
+
+use CodizerTienda\Ventas;
 use Illuminate\Http\Request;
 use CodizerTienda\Http\Requests;
+use CodizerTienda\Http\Controllers\Controller;
 
-class CartController extends Controller
-{
+
+class CartController extends Controller {
+
+    public function __construct()
+    {
+        if(!Session::has('cart'))
+            Session::put('cart');
+    }
+
+
     /**
      * Display a listing of the resource.
      *

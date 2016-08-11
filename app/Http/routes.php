@@ -30,8 +30,8 @@ Route::get('insert', 'Coustumer\CoustumerController@index');
 Route::post('insert', 'Coustumer\CoustumerController@create');
 
 Route::get('ventas', [
-    'uses' => 'Costumer\CartController@index',
-    'as' => 'costumer.carrito'
+    'uses' => 'Coustumer\CartController@index',
+    'as' => 'coustumer.carrito'
 ]);
 
 Route::post('ventas', [
