@@ -4,7 +4,7 @@
 
 @section('content')
 
-<!-- Begin page content -->
+        <!-- Begin page content -->
 <div class="container panel-container">
 
     <div class="page-header">
@@ -23,23 +23,27 @@
     <div class="row">
 
         @foreach($categorias as $categoria)
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img data-src="holder.js/100%x200" alt="100%x200" src="{{ asset('media/icon/category-2.png') }}" data-holder-rendered="true" style="width: 100%; height: auto; display: block;">
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <img data-src="holder.js/100%x200" alt="100%x200" src="{{ asset('media/icon/category-2.png') }}"
+                         data-holder-rendered="true" style="width: 100%; height: auto; display: block;">
 
-                <div class="caption"><h3>{{$categoria->name}}</h3>
-                    <p>Categoria</p>
-                    <p>
-                        {!! Form::open(['route' => ['admin.categorias.destroy', $categoria->id], 'method' => 'DELETE']) !!}
-                        <a href="{{route('admin.categorias.editar',$categoria)}}" class="btn btn-info" id="btnUpdate" data-toggle="modal" data-target="#modalCategoriesUpdate">Actualizar</a>
-                        <button type="submit" class="btn btn-danger" role="button">Eliminar</button>
-                        {!! Form::close() !!}
-                    </p>
+                    <div class="caption"><h3>{{$categoria->name}}</h3>
+
+                        <p>Categoria</p>
+
+                        <p>
+                            {!! Form::open(['route' => ['admin.categorias.destroy', $categoria->id], 'method' => 'DELETE']) !!}
+                            <a href="{{route('admin.categorias.editar', $categoria)}}" class="btn btn-info"
+                               id="btnUpdate">Actualizar</a>
+                            <button type="submit" class="btn btn-danger" role="button">Eliminar</button>
+                            {!! Form::close() !!}
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-            @endforeach
+        @endforeach
 
     </div>
 
@@ -64,14 +68,15 @@
 
 
 @if($modal==true)
-<!-- Modal_Update -->
+        <!-- Modal_Update -->
 <div class="modal fade" id="modalCategoriesUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
 
-        {!! Form::model($categorias, ['route' => ['admin.categorias.update', $categorias], 'method' => 'PUT', 'class' => 'form-horizontal', 'id' => 'modalUpdate']) !!}
+        {!! Form::model($categoria, ['route' => ['admin.categorias.update', $categoria], 'method' => 'PUT', 'id' => 'form-edit', 'class' => 'form-horizontal']) !!}
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Actualizar Categoria</h4>
             </div>
             <div class="modal-body">
@@ -97,7 +102,7 @@
 @endif
 
 
-<!-- Modal INSERT-->
+        <!-- Modal INSERT-->
 <div class="modal fade" id="modalCategories" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
 
@@ -115,7 +120,8 @@
                     <label for="title" class="col-sm-2 control-label">Categoria</label>
 
                     <div class="col-sm-10">
-                        <input name="name" type="text" class="form-control" id="name" placeholder="Ingresa el nombre de la categoria"
+                        <input name="name" type="text" class="form-control" id="name"
+                               placeholder="Ingresa el nombre de la categoria"
                                required>
                     </div>
                 </div>
@@ -137,12 +143,17 @@
 @section('extra-scripts')
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             @if($modal == true)
-                $('#modalCategoriesUpdate').modal('show');
-             @else
-                $('#modalCategoriesUpdate').modal('hide');
-             @endif
+            $('#form-edit').each(function () {
+                this.reset();
+            });
+            $('#modalCategoriesUpdate').modal('show');
+            @else
+               $('#modalCategoriesUpdate').modal('hide');
+            @endif
+
+
         });
     </script>
 

@@ -49,30 +49,39 @@ class ProveedoresController extends Controller
      */
     public function store(Request $request)
     {
-        $proveedor = new Proveedor();
-        $proveedor->fill($request->all());
-        $proveedor->save();
+        DB::beginTransaction();
+        try {
+            $proveedor = new Proveedor();
+            $proveedor->fill($request->all());
+            $proveedor->save();
 
-        $direccion = new Direccion();
-        $direccion->fill($request->all());
-        $direccion->proveedores_id = $proveedor->id;
-        $direccion->desc = $request->desc_dir;
-        $direccion->num = $request->num_dir;
-        $direccion->save();
+            $direccion = new Direccion();
+            $direccion->fill($request->all());
+            $direccion->proveedores_id = $proveedor->id;
+            $direccion->desc = $request->desc_dir;
+            $direccion->num = $request->num_dir;
+            $direccion->save();
 
-        $telefono = new Telefono();
-        $telefono->proveedores_id = $proveedor->id;
-        $telefono->desc = $request->desc_tel;
-        $telefono->num = $request->num_tel;
-        $telefono->save();
+            $telefono = new Telefono();
+            $telefono->proveedores_id = $proveedor->id;
+            $telefono->desc = $request->desc_tel;
+            $telefono->num = $request->num_tel;
+            $telefono->save();
 
-        $correo = new Correo();
-        $correo->fill($request->all());
-        $correo->proveedores_id = $proveedor->id;
-        $correo->desc = $request->desc_mail;
-        $correo->save();
+            $correo = new Correo();
+            $correo->fill($request->all());
+            $correo->proveedores_id = $proveedor->id;
+            $correo->desc = $request->desc_mail;
+            $correo->save();
 
-        return \Redirect::route('admin.proveedores');
+            DB::commit();
+            return \Redirect::route('admin.proveedores');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            Session::flash('message', 'La categoría ha sido asignada y no puede eliminarse');
+            return \Redirect::route('admin.proveedores');
+        }
     }
 
     /**
@@ -106,12 +115,55 @@ class ProveedoresController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->idUp;
+
+        DB::beginTransaction();
+        try {
+            $proveedor = Proveedor::findOrFail($id);
+            $proveedor->nom_empresa = $request->nom_empresaUp;
+            $proveedor->nom_contacto = $request->nom_contactoUp;
+            $proveedor->ap_paterno = $request->ap_paternoUp;
+            $proveedor->ap_materno = $request->ap_maternoUp;
+            $proveedor->save();
+
+            $direccionId = Direccion::where('proveedores_id', $id)->select('id')->first();
+            $direccion = Direccion::findOrFail($direccionId->id);
+            $direccion->desc = $request->desc_dirUp;
+            $direccion->estado = $request->estadoUp;
+            $direccion->municipio = $request->municipioUp;
+            $direccion->colonia = $request->coloniaUp;
+            $direccion->calle = $request->calleUp;
+            $direccion->num = $request->num_dirUp;
+            $direccion->cp = $request->cpUp;
+            $direccion->proveedores_id = $proveedor->id;
+            $direccion->save();
+
+            $telefonoId = Telefono::where('proveedores_id', $id)->select('id')->first();
+            $telefono = Telefono::findOrFail($telefonoId->id);
+            $telefono->desc = $request->desc_telUp;
+            $telefono->num = $request->num_telUp;
+            $telefono->proveedores_id = $proveedor->id;
+            $telefono->save();
+
+            $correoId = Correo::where('proveedores_id', $id)->select('id')->first();
+            $correo = Correo::findOrFail($correoId->id);
+            $correo->fill($request->all());
+            $correo->desc = $request->desc_mailUp;
+            $correo->correo = $request->correoUp;
+            $correo->proveedores_id = $proveedor->id;
+            $correo->save();
+
+            DB::commit();
+            return \Redirect::route('admin.proveedores');
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('message', 'Ocurrio un problema ' . $e->getMessage());
+            return \Redirect::route('admin.proveedores');
+        }
     }
 
     /**
@@ -142,7 +194,7 @@ class ProveedoresController extends Controller
             $message = 'Proveedor eliminado.';
         } catch (\Exception $e) {
             DB::rollback();
-            return  'Ocurrio un problema';
+            return 'Ocurrio un problema';
         }
         if ($request->ajax()) {
             return $message;

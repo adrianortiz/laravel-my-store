@@ -1,36 +1,6 @@
 /**
  * Created by Jonathan on 20/07/2016.
  */
-//$(document).ready(function () {
-//    $('.btn-delete').click(function () {
-//        var proveedor = $(this).parents('tr');
-//        var id = proveedor.data('proveedor');
-//        var form = $('#form-delete');
-//        var url = form.attr('action').replace('ID', id);
-//        var data = form.serialize();
-//
-//        $('#modalDelete').modal({
-//            show: 'true'
-//        });
-//
-//
-//        $('#btn-eliminar').click(function () {
-//            $('#modalDelete').modal({
-//                show: 'false'
-//            });
-//
-//            $.post(url, data, function (result) {
-//                alert(result);
-//                proveedor.fadeOut();
-//            }).fail(function () {
-//                alert("Este registro no pudo ser eliminado");
-//                proveedor.fadeIn();
-//            });
-//        });
-//    });
-//});
-
-
 (function ($) {
     var App = {
             init: function () {
@@ -80,6 +50,7 @@
                     });
 
                     function fillUpdate(data) {
+                        $('#form-show').attr('action').replace('IDShow', id);
                         $('#idUp').val(data[0].id);
                         $('#nom_empresaUp').val(data[0].nom_empresa);
                         $('#nom_contactoUp').val(data[0].nom_contacto);

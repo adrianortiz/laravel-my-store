@@ -150,7 +150,7 @@ Route::group(['middleware' => 'auth'], function () {
                 'as' => 'admin.proveedores.store'
             ]);
 
-            Route::put('proveedores/update', [
+            Route::put('proveedores/update/{id}', [
                 'uses' => 'ProveedoresController@update',
                 'as' => 'admin.proveedores.update'
             ]);

@@ -20,8 +20,8 @@ class CategoriasController extends Controller
     public function index()
     {
         $categorias = Categoria::all();
-        $modal=false;
-        return view('admin.panel-categories', compact('categorias'),compact('modal'));
+        $modal = false;
+        return view('admin.panel-categories', compact('categorias'), compact('modal'));
     }
 
     /**
@@ -37,7 +37,7 @@ class CategoriasController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,7 +45,7 @@ class CategoriasController extends Controller
         $categoria = new Categoria();
         $categoria->fill($request->all());
 
-        if( $categoria->save() ) {
+        if ($categoria->save()) {
             Session::flash('message', 'Categoría creada.');
             return redirect()->route('admin.categorias');
         }
@@ -54,7 +54,7 @@ class CategoriasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -65,33 +65,33 @@ class CategoriasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-      $categorias = Categoria::all();
-      $categoria = Categoria::where('id', $id)
-          ->select('*')
-          ->get();
+        $categorias = Categoria::all();
+        $categoria = Categoria::where('id', $id)
+            ->select('*')
+            ->first();
 
-      $modal=true;
+        $modal = true;
 
-        return view('admin.panel-categories',compact('categorias'), compact('categoria'))->with('modal',$modal);
+        return view('admin.panel-categories', compact('categoria'), compact('categorias'))->with('modal', $modal);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         DB::beginTransaction();
         try {
-            $categoria = Categoria::findOrFail($request->id);
+            $categoria = Categoria::findOrFail($id);
             $categoria->fill($request->all());
             $categoria->save();
 
@@ -110,7 +110,7 @@ class CategoriasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

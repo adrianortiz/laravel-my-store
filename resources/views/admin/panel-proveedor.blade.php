@@ -306,7 +306,7 @@
 <div class="modal fade" id="modalUpProveedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
 
-        {!! Form::open(['route' => 'admin.proveedores.update', 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+        {!! Form::open(['route' => 'admin.proveedores.update', 'method' => 'PUT', 'class' => 'form-horizontal', 'id' => 'form-edit']) !!}
         {!! Form::hidden('idUp', old('idUp'), ['id' => 'idUp']) !!}
         <div class="modal-content">
             <div class="modal-header">
