@@ -16,11 +16,13 @@ class CartController extends Controller
      */
     public function index()
     {
-        $carrito = Ventas::join('users', 'ventas.users_id', '=' , 'users.id')
-            ->select('carrito.*')
+        $carrito = Ventas::
+            join('users_has_ventas', 'ventas.id', '=', 'users_has_ventas.ventas_id')
+            ->join('ventas_has_products', 'ventas.id', '=', 'ventas_has_products.ventas_id')
+            ->select('users_has_ventas.*', 'ventas_has_products.*','ventas.*')
             ->get();
 
-        return view('admin.panel-carrito', compact('carrito'));
+        return view('carrito', compact('carrito'));
     }
 
     /**
@@ -41,7 +43,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $carrito = new Carrito();
+        $carrito = new Ventas();
         $carrito->fill($request->all());
 
         if( $carrito->save() ) {

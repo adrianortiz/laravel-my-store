@@ -137,7 +137,6 @@ Route::group(['middleware' => 'auth'], function () {
             ]);
 
 
-
             /**
              * Rutas para administrar proveedores
              */
@@ -178,6 +177,8 @@ Route::group(['middleware' => 'auth'], function () {
                 'uses' => 'ComprasController@store',
                 'as' => 'admin.compras.store'
             ]);
+
+
 
             Route::get('ventas', [
                 'uses' => 'CartController@index',

@@ -12,6 +12,6 @@ use Illuminate\Database\Eloquent\Model;
 class Ventas_has_products extends Model
 {
     protected $table = 'ventas_has_products';
-    protected $fillable = ['users_id','ventas_id'];
+    protected $fillable = ['users_id','products_id','cantidad','precio','descuento'];
     public $timestamps = false;
 }
