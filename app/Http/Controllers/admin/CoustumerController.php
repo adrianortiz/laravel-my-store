@@ -1,6 +1,6 @@
 <?php
 
-namespace CodizerTienda\Http\Controllers\Coustumer;
+namespace CodizerTienda\Http\Controllers\Admin;
 
 use CodizerTienda\User;
 use Illuminate\Http\Request;
@@ -12,21 +12,9 @@ class CoustumerController extends Controller
 {
     //
     public function index (){
-        return view('users.create');
     }
 
     public function create(){
-        $data = request()->all();
-        $user = new User([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-
-        $user->type = 'coustumer';
-        $user->save();
-
-        return redirect()->route('store.index');
     }
 
     public function edit($id){
@@ -34,14 +22,20 @@ class CoustumerController extends Controller
             ->select('id', 'name', 'email', 'password')
             ->where('users.id', $id)
             ->get();
-        return view('users.edit', compact('user'));
+        return view('admin.panel-edit-coustumer', compact('user'));
     }
 
     public function update(Request $request){
+        $data = $request->all();
         \DB::beginTransaction();
         try {
+            bcrypt($request->password);
             $coustumer = User::findOrFail($request->id);
-            $coustumer->fill($request->all());
+            $coustumer->fill([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
             $coustumer->save();
 
             \Session::flash('message', 'Usuario actualizado.');
@@ -74,11 +68,12 @@ class CoustumerController extends Controller
     }
 
     public function show(){
+        $modal = false;
         $users = \DB::table('users')
             ->select('id', 'name', 'email', 'type')
             ->where('users.type', 'coustumer')
             ->get();
-        return view('users.show', compact('users'));
+        return view('admin.panel-coustumers', compact('users'), compact('modal'));
     }
 
     public function store(){

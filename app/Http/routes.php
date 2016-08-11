@@ -29,27 +29,6 @@ Route::get('categoria/{id}/{slug}', [
 Route::get('insert', 'Coustumer\CoustumerController@index');
 Route::post('insert', 'Coustumer\CoustumerController@create');
 
-Route::get('show', [
-    'uses'  => 'Coustumer\CoustumerController@show',
-    'as'    => 'coustumer.show'
-]);
-
-Route::get('edit/{id}', [
-    'uses'  => 'Coustumer\CoustumerController@edit',
-    'as'    => 'coustumer.edit'
-]);
-
-Route::put('coustumer/update', [
-    'uses' => 'Coustumer\CoustumerController@update',
-    'as' => 'coustumer.update'
-]);
-
-Route::delete('coustumer/{id}', [
-    'uses' => 'Coustumer\CoustumerController@destroy',
-    'as' => 'coustumer.destroy'
-]);
-
-
 Route::get('ventas', [
     'uses' => 'Costumer\CartController@index',
     'as' => 'costumer.carrito'
@@ -77,6 +56,30 @@ Route::group(['middleware' => 'auth'], function () {
 
         // RUTAS CON PREFIJO admin
         Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
+
+            /**
+             * Rutas para administrar coustumers
+             */
+
+            Route::get('coustumers', [
+                'uses'  => 'CoustumerController@show',
+                'as'    => 'coustumer.show'
+            ]);
+
+            Route::get('coustumer/update/{id}', [
+                'uses'  => 'CoustumerController@edit',
+                'as'    => 'coustumer.edit'
+            ]);
+
+            Route::put('coustumer/update', [
+                'uses' => 'CoustumerController@update',
+                'as' => 'coustumer.update'
+            ]);
+
+            Route::delete('coustumer/delete/{id}', [
+                'uses' => 'CoustumerController@destroy',
+                'as' => 'coustumer.destroy'
+            ]);
 
             /**
              * Rutas para administrar el Slider
