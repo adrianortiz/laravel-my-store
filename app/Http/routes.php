@@ -50,6 +50,18 @@ Route::delete('coustumer/{id}', [
 ]);
 
 
+Route::get('ventas', [
+    'uses' => 'Costumer\CartController@index',
+    'as' => 'costumer.carrito'
+]);
+
+Route::post('ventas', [
+    'uses' => 'CartController@store',
+    'as' => 'users.carrito.store'
+]);
+
+
+
 // USO DE MIDDLEWARES
 Route::group(['middleware' => 'auth'], function () {
 

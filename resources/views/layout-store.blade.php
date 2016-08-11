@@ -49,7 +49,7 @@
         </a>
         <ul id="cart-container-global">
             <li>
-                <a href="{{route('user.carrito')}}">
+                <a href="{{route('costumer.carrito')}}">
                     <img src="{{ asset('media/icon/cart-icon.png') }}" width="30" height="25"/>
                     <span id="cart-info">Carrito:</span>
                     <span id="cart-desc">Carrito de compras</span>
