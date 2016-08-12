@@ -46,14 +46,14 @@
                             <td style="text-align: left">
                                 <ul style="list-style: none; padding: 0">
                                     <li class="cd-link">
-                                        <a href="{{ route('store.show.item', [$item->producto_id, \Illuminate\Support\Str::slug($item->name)]) }}">
-                                            {{ $item->nombre }}
+                                        <a href="{{ route('store.show.item', [$item->product_id, \Illuminate\Support\Str::slug($item->name)]) }}">
+                                            {{ $item->name }}
                                         </a>
                                     </li>
                                     <li>${{ $item->price  . ' -' . $item->offert . '%'}}</li>
                                     <li>
                                         {!! Form::open(['route' => 'store.front.product.orden.delete', 'method' => 'DELETE']) !!}
-                                        {!! Form::hidden('id', $item->producto_id, ['id' => 'id']) !!}
+                                        {!! Form::hidden('id', $item->product_id, ['id' => 'id']) !!}
                                         <button type="submit" class="btn btn-xs btn-danger">Quitar de la lista</button>
                                         {!! Form::close() !!}
                                     </li>
@@ -63,7 +63,7 @@
 
                             <td>
                                 {!! Form::open(['route' => 'store.front.product.orden.update', 'method' => 'PUT']) !!}
-                                {!! Form::hidden('id', $item->producto_id, ['id' => 'id']) !!}
+                                {!! Form::hidden('id', $item->product_id, ['id' => 'id']) !!}
                                 {!! Form::number('cantidad', $item->quantity, ['class' => 'form-control btn btn-sm btn-border-yellow', 'style' => 'width: 60px !important;'] ) !!}
                                 <button type="submit" class="btn btn-border-yellow btn-order-quantity">Actualizar</button>
                                 {!! Form::close() !!}

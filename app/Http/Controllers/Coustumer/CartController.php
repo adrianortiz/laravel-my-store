@@ -4,7 +4,6 @@ namespace CodizerTienda\Http\Controllers\Coustumer;
 
 
 use CodizerTienda\Producto;
-use CodizerTienda\Ventas;
 use Illuminate\Http\Request;
 use CodizerTienda\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
@@ -27,9 +26,12 @@ class CartController extends Controller {
      */
     public function index()
     {
+        // Session::forget('cart');
+
         $tiendaRoute = 'cart';
         $cart = Session::get($tiendaRoute);
         $total = $this->total($tiendaRoute);
+
 
         return view('store-cart', compact('cart', 'total'));
     }
@@ -88,6 +90,42 @@ class CartController extends Controller {
 
     }
 
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function storeByNumber(Request $request)
+    {
+
+        $product = Producto::join('categories', 'products.categories_id', '=' , 'categories.id')
+            ->join('proveedores', 'products.proveedores_id', '=', 'proveedores.id')
+            ->select('products.*', 'proveedores.nom_empresa', 'categories.name AS name_category', 'products.id AS product_id')
+            ->orderBy('products.id', 'desc')
+            ->where('products.available', 1)
+            ->where('products.id', $request['id'])
+            ->first();
+
+        $cart = Session::get('cart');
+
+        if (array_key_exists($product->product_id, $cart))
+            $product->quantity = ($cart[$product->product_id]->quantity + $request['cantidad']);
+        else
+            $product->quantity = $request['cantidad'];
+
+
+        $porcentaje = $product->offert / 100;
+        $valor = $product->price * $porcentaje;
+        $product->final_price = (double)($product->price - $valor);
+
+        $cart[$product->product_id] = $product;
+        Session::put('cart', $cart);
+
+
+        return Redirect::back()->with('message','Cantidad del Item actualizado.');
+
+    }
+
     /**
      * Update quantity of exist product cart list
      *
@@ -97,11 +135,19 @@ class CartController extends Controller {
     public function update(Request $request)
     {
 
-        $product = Producto::findOrFail($request['id']);
+        // dd($request->all());
+
+        $product = Producto::join('categories', 'products.categories_id', '=' , 'categories.id')
+            ->join('proveedores', 'products.proveedores_id', '=', 'proveedores.id')
+            ->select('products.*', 'proveedores.nom_empresa', 'categories.name AS name_category', 'products.id AS product_id')
+            ->orderBy('products.id', 'desc')
+            ->where('products.available', 1)
+            ->where('products.id', $request['id'])
+            ->first();
 
         $cart = Session::get('cart');
-        $cart[$product->product_id]->quantity = $request['cantidad'];
-        Session::put('cart');
+        $cart[$request['id']]->quantity = $request['cantidad'];
+        Session::put('cart', $cart);
 
         return Redirect::back()->with('message','Cantidad del Item actualizado.');
     }
@@ -143,6 +189,7 @@ class CartController extends Controller {
      */
     public function delete(Request $request)
     {
+
         $cart = Session::get('cart');
         unset($cart[$request['id']]);
         Session::put('cart', $cart);
@@ -164,6 +211,6 @@ class CartController extends Controller {
         // dd($cart);
         $total = $this->total('cart');
 
-        return view('plantillas.pro.order-detail', compact('tienda', 'userContacto', 'userPerfil', 'cart', 'total', 'pago'));
+        return view('store-order-detail', compact('tienda', 'userContacto', 'userPerfil', 'cart', 'total', 'pago'));
     }
 }

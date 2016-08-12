@@ -283,9 +283,17 @@ Route::get('carrito', [
     'as' => 'cliente.carrito.index'
 ]);
 
+// ADD
 Route::post('carrito', [
     'uses' => 'Coustumer\CartController@store',
     'as' => 'cliente.carrito.store'
+]);
+
+
+// ADD BY NUMBER
+Route::post('carrito/number', [
+    'uses' => 'Coustumer\CartController@storeByNumber',
+    'as' => 'cliente.carrito.storeByNumber'
 ]);
 
 // Update item from cart

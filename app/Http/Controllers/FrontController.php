@@ -48,7 +48,7 @@ class FrontController extends Controller
 
         $relacionados = Producto::join('categories', 'products.categories_id', '=' , 'categories.id')
             ->join('proveedores', 'products.proveedores_id', '=', 'proveedores.id')
-            ->select('products.*', 'proveedores.nom_empresa', 'categories.name AS name_category')
+            ->select('products.*', 'proveedores.nom_empresa', 'categories.name AS name_category', 'products.id AS relacionado_id')
             ->orderBy('products.id', 'desc')
             ->where('products.available', 1)
             ->where('products.id', '<>',$id)
