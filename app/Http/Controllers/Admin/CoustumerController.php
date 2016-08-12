@@ -19,7 +19,7 @@ class CoustumerController extends Controller
 
     public function edit($id){
         $user = \DB::table('users')
-            ->select('id', 'name', 'email', 'password')
+            ->select('id', 'name', 'email', 'password', 'paterno', 'materno', 'sexo', 'fecha_na')
             ->where('users.id', $id)
             ->get();
         return view('admin.panel-edit-coustumer', compact('user'));
@@ -35,6 +35,10 @@ class CoustumerController extends Controller
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
+                'paterno' => $data['paterno'],
+                'materno' => $data['materno'],
+                'sexo' => $data['sexo'],
+                'fecha_na' => $data['fecha_na'],
             ]);
             $coustumer->save();
 

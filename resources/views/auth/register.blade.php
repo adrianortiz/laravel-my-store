@@ -9,9 +9,10 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
+                        {!! Form::hidden('type', $type='coustumer') !!}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Name</label>
+                            <label class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}">
@@ -24,8 +25,36 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('paterno') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Apellido paterno</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="paterno" value="{{ old('paterno') }}">
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('paterno') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('materno') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Apellido Materno</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="materno" value="{{ old('materno') }}">
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('materno') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+                            <label class="col-md-4 control-label">E-Mail</label>
 
                             <div class="col-md-6">
                                 <input type="email" class="form-control" name="email" value="{{ old('email') }}">
@@ -35,6 +64,23 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('sexo') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label" for="sel1">Sexo</label>
+                            <div class="col-md-6">
+                                <div class="radio">
+                                    <label><input type="radio" name="sexo" value="Masculino">Masculino</label>
+                                    <label><input type="radio" name="sexo" value="Femenino">Femenino</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('fecha_na') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label" for="sel1">Fecha de nacimiento</label>
+                            <div class="col-md-6">
+                                <input type="date" class="form-control" name="fecha_na">
                             </div>
                         </div>
 
@@ -71,6 +117,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i>Register
                                 </button>
+                                <a href="{{ route('store.index') }}" class="btn btn-danger">Cancelar</a>
                             </div>
                         </div>
                     </form>

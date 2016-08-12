@@ -30,10 +30,43 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="col-md-4 control-label">Apellido paterno</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="paterno" value="{{ $user[0]->paterno }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Apellido Materno</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="materno" value="{{ $user[0]->materno }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-md-4 control-label">Email</label>
 
                                 <div class="col-md-6">
                                     <input type="email" class="form-control" name="email" value="{{ $user[0]->email }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="sel1">Sexo</label>
+                                <div class="col-md-6">
+                                    <div class="radio">
+                                        <label><input type="radio" name="sexo" value="Masculino">Masculino</label>
+                                        <label><input type="radio" name="sexo" value="Femenino">Femenino</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="sel1">Fecha de nacimiento</label>
+                                <div class="col-md-6">
+                                    <input type="date" class="form-control" name="fecha_na" value="{{ $user[0]->fecha_na }}">
                                 </div>
                             </div>
 
