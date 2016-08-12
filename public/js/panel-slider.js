@@ -30,11 +30,10 @@ $(".form-slider-destroy").submit(function(e){
                     });
 
                     function fillUpdate(data) {
-                        $('#idUp').val(data.id);
-                        $('#img_name').val(data.img_name);
-                        $('#title').val(data.title);
-                        $('#dec').val(data.dec);
-
+                        $('#idUp').val(data[0].id);
+                        $('#title').val(data[0].title);
+                        $('#dec').val(data[0].dec);
+                        $('#img_name').val(data[0].img_name);
 
 
                         $('#modalSliderUpdate').modal({

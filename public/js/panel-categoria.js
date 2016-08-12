@@ -11,7 +11,6 @@
 
                 $('.btn-edit').click(function () {
                     var categoria = $(this).parents('div.containerId').attr('data-categoria');
-                    
                     var form = $('#form-show');
                     var url = form.attr('action').replace('IDShow', categoria);
                     var data = form.serialize();
