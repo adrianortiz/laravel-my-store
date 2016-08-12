@@ -66,7 +66,8 @@
 
                 {!! Form::open(['route' => ['admin.slider.destroy', $slider->id], 'method' => 'DELETE', 'class' => 'form-slider-destroy']) !!}
                 <div class="item-bg">
-                    <a href="#0">Editar</a>
+                    <a href="{{route('admin.slider.editar', $slider)}}" class="btn btn-info"
+                       id="btnUpdate">Editar</a>
                     <button type="submit">Eliminar</button>
                 </div>
                 {!! Form::close() !!}
@@ -91,9 +92,73 @@
         </div>
     </div>
 
+
+
+@if($modal==true)
+<!-- Modal UPDATE -->
+<div class="modal fade" id="modalSliderUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+
+        {!! Form::model($slider, ['route' => ['admin.slider.update',$slider],'method' => 'PUT', 'id' => 'form-edit','class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Nueva imagen para Slider</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">Título</label>
+                    <div class="col-sm-10">
+                        {!! Form::text('title', old('title'), ['id' => 'title', 'class' => 'form-control', 'required']) !!}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dec" class="col-sm-2 control-label">Descripción</label>
+                    <div class="col-sm-10">
+                        {!! Form::textarea('dec', old('dec'), ['id' => 'dec', 'class' => 'form-control', 'required']) !!}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="desc" class="col-sm-2 control-label">Imagen</label>
+                    <div class="col-sm-10">
+                        {!! Form::file('img_name', old('img_name'),['accept' => 'image/jpg,image/png', 'id' => 'img_name', 'class' => 'form-control', 'required']) !!}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-info">Guardar</button>
+            </div>
+        </div>
+        {!! Form::close() !!}
+
+    </div>
+</div>
+@endif
+
+
+
+
+
 @endsection
 
 @section('extra-scripts')
+    <script>
+        $(document).ready(function () {
+            @if($modal == true)
+            $('#form-edit').each(function () {
+                        this.reset();
+                    });
+            $('#modalSliderUpdate').modal('show');
+            @else
+               $('#modalSliderUpdate').modal('hide');
+            @endif
+
+        });
+    </script>
+
     <script>$('header div ul li:nth-child(1) a').addClass('active-menu');</script>
     <script src=" {{ asset('js/panel-slider.js') }}"></script>
 @endsection

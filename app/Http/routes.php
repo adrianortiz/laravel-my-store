@@ -130,6 +130,18 @@ Route::group(['middleware' => 'auth'], function () {
                 'as' => 'admin.slider.destroy'
             ]);
 
+            Route::put('slider/{id}', [
+                'uses' => 'SliderController@update',
+                'as' => 'admin.slider.update'
+            ]);
+
+            Route::get('slider/actualizar/{id}', [
+                'uses' => 'SliderController@edit',
+                'as' => 'admin.slider.editar'
+            ]);
+
+
+
 
             /**
              * Rutas para administrar Items
@@ -153,6 +165,10 @@ Route::group(['middleware' => 'auth'], function () {
                 'uses' => 'ItemsController@update',
                 'as' => 'admin.items.update'
             ]);
+
+
+
+
 
             /**
              * Rutas para administrar Categorias
