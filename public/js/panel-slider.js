@@ -16,10 +16,10 @@ $(".form-slider-destroy").submit(function(e){
             SelectSlider: function () {
 
                 $('.btn-edit').click(function () {
-                    var slider = $(this).parents('div');
-                    var id = slider.data('slider');
+                    var slider = $(this).parents('div.containerId').attr('data-slider');
+                    alert(slider);
                     var form = $('#form-show');
-                    var url = form.attr('action').replace('IDShow', id);
+                    var url = form.attr('action').replace('IDShow', slider);
                     var data = form.serialize();
 
                     $.get(url, data, function (result) {
@@ -36,7 +36,7 @@ $(".form-slider-destroy").submit(function(e){
 
 
 
-                        $('#modalCategoriesUpdate').modal({
+                        $('#modalSliderUpdate').modal({
                             show: 'true'
                         });
                     }

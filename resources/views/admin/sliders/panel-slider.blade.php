@@ -62,7 +62,7 @@
         <div class="panel-slider-container">
 
             @foreach($sliders as $slider)
-            <div class="panel-slider-container-item">
+            <div class="panel-slider-container-item containerId" data-slider="{{$slider->id}}">
 
                 {!! Form::open(['route' => ['admin.slider.destroy', $slider->id], 'method' => 'DELETE', 'class' => 'form-slider-destroy']) !!}
                 <div class="item-bg">
