@@ -10,10 +10,10 @@
             SelectCategoria: function () {
 
                 $('.btn-edit').click(function () {
-                    var categoria = $(this).parents('div');
-                    var id = categoria.data('categoria');
+                    var categoria = $(this).parents('div.containerId').attr('data-categoria');
+                    
                     var form = $('#form-show');
-                    var url = form.attr('action').replace('IDShow', id);
+                    var url = form.attr('action').replace('IDShow', categoria);
                     var data = form.serialize();
 
                     $.get(url, data, function (result) {

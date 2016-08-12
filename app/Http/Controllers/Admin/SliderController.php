@@ -89,6 +89,7 @@ class SliderController extends Controller
         $id = $request->idUp;
         DB::beginTransaction();
         try {
+
             $slider=Slider::findOrFail($id);
             $filePhotoSlider = $request->file('img_name');
 

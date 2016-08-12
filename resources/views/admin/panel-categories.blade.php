@@ -23,7 +23,7 @@
     <div class="row">
 
         @foreach($categorias as $categoria)
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-3 containerId" data-categoria="{{$categoria->id}}">
                 <div class="thumbnail" data-categoria="{{$categoria->id}}">
                     <img data-src="holder.js/100%x200" alt="100%x200" src="{{ asset('media/icon/category-2.png') }}"
                          data-holder-rendered="true" style="width: 100%; height: auto; display: block;">
