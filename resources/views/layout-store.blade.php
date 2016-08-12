@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link type="text/css" rel="stylesheet" href="{{ asset('components/slick/slick.css') }}"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('components/slick/slick-theme.css') }}"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/index.css') }}"/>
@@ -26,7 +27,24 @@
                 <li><a href="#">Contacto</a></li>
                 <li><a href="{{ url('/home') }}">Administración</a></li>
                 <li><a href="{{ url('/register') }}">Crear cuenta</a></li>
-                <li><a href="{{ route('client.index') }}">¡Clientes aqui!</a></li>
+                @if(Auth::user())
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <span>Hola: </span> {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('client.show') }}" style="color: #000;">Cuenta</a></li>
+                            <li role="separator" class="divider"></li>
+                            <!--<li><a href="#" style="color: #000;">Añadir dirección</a></li>
+                            <li role="separator" class="divider"></li>-->
+                            <li><a href="{{ url('/logout') }}" style="color: #000; display: block;"><i
+                                            class="fa fa-btn fa-sign-out"></i>Salir</a></li>
+                        </ul>
+                    </li>
+                @else
+                    <li><a href="{{ route('client.index') }}">¡Clientes aqui!</a></li>
+                @endif
             </ul>
             <div id="menu-secundario">
                 <h2>Secciones</h2>
@@ -61,7 +79,7 @@
                 </a>
             </li>
             <li>
-                <span>Monedas: </span>
+                <span>nMoedas: </span>
                 <select name="moneda-general" id="moneda-general">
                     <option value="1">Us Dollar</option>
                     <option value="2">Mx Pesos</option>
@@ -69,10 +87,29 @@
             </li>
         </ul>
         <div id="global-search">
-            <form action="/" method="POST">
-                <input type="text" placeholder="Búsqueda del sitio"/>
-                <input type="submit" value="Ir">
-            </form>
+            {!! Form::open(['route' => 'buscar.index', 'method' => 'GET', 'id' => 'form-buscar']) !!}
+            {!! Form::text('buscar', null, ['id' => 'txtBuscar', 'placeholder' => 'Búsqueda del sitio']) !!}
+            <style>
+                .result-items-z {
+                    display: none;
+                    position: fixed;
+                    z-index: 100;
+                    margin-top: 60px;
+                    border: 1px solid;
+                    width: 300px;
+                    background: white;
+                    height: 300px !important;
+                    overflow: auto;
+                }
+            </style>
+            <div class="result-items-z">
+                <button id="btn-hide-item-search-z">x</button>
+                <ul id="list-items-search">
+
+                </ul>
+            </div>
+            <input type="submit" value="Ir">
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
@@ -84,9 +121,7 @@
     </div>
 
 
-
     @yield('content')
-
 
 
 </div>
@@ -136,6 +171,7 @@
 <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('components/slick/slick.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/index-store.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/panel-buscador.js') }}"></script>
 @yield('extra-scripts')
 </body>
 </html>

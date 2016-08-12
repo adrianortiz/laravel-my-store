@@ -41,6 +41,12 @@ Route::get('client', [
     'as'    => 'client.index'
 ]);
 
+
+Route::get('buscador', [
+    'uses'  => 'FrontController@buscador',
+    'as'    => 'buscar.index'
+]);
+
 // USO DE MIDDLEWARES
 Route::group(['middleware' => 'auth'], function () {
 
