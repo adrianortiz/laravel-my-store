@@ -16,6 +16,12 @@
             background-position: center center;
             border-radius: 4px;
         }
+
+        #admins{
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
     </style>
 
     @yield('extra-css')
@@ -64,8 +70,15 @@
             <li><a href="{{ route('admin.compras') }}">Compras</a></li>
             <li><a href="{{ route('admin.proveedores') }}">Proveedores</a></li>
             <li><a href="{{ route('admin.categorias') }}">Categorías</a></li>
-            <li><a href="{{ route('coustumer.show') }}">Usuarios</a></li>
-            <li><a href="{{ route('admin.show') }}">Administradores</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                    Usuarios <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li id="admins"><a href="{{ route('admin.show') }}">Administradores</a></li>
+                    <li><a href="{{ route('coustumer.show') }}">Clientes</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </header>

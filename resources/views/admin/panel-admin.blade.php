@@ -110,6 +110,6 @@
 
 @section('extra-scripts')
 
-    <script>$('header div ul li:nth-child(7) a').addClass('active-menu');</script>
+    <script>$('header div ul li:nth-child(6) a').addClass('active-menu');</script>
 
 @endsection
