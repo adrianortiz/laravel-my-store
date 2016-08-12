@@ -33,7 +33,7 @@ $(".form-slider-destroy").submit(function(e){
                         $('#idUp').val(data[0].id);
                         $('#title').val(data[0].title);
                         $('#dec').val(data[0].dec);
-                        $('#img_name').val(data[0].img_name);
+                        //$('#img_name').val(data[0].img_name);
 
 
                         $('#modalSliderUpdate').modal({
