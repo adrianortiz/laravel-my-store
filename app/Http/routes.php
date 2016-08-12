@@ -26,8 +26,15 @@ Route::get('categoria/{id}/{slug}', [
     'as'    => 'store.show.item.category'
 ]);
 
-Route::get('insert', 'Coustumer\CoustumerController@index');
-Route::post('insert', 'Coustumer\CoustumerController@create');
+Route::get('create', [
+    'uses' => 'Coustumer\CoustumerController@index',
+    'as' => 'coustumer.index'
+]);
+
+Route::post('create', [
+    'uses' => 'Coustumer\CoustumerController@create',
+    'as' => 'coustumer.create'
+]);
 
 Route::get('ventas', [
     'uses' => 'Coustumer\CartController@index',

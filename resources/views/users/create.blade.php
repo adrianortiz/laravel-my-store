@@ -19,21 +19,19 @@
 
         button{
             margin: 0 auto;
-            width: 300px;
+            width: 150px;
             display: block;
         }
     </style>
 
-   <form method="POST" action="{{ url('insert') }}">
-       {!! csrf_field() !!}
-       <label>Nombre</label>
-       <input type="text" placeholder="Escribe tu nombre" name="name">
-       <label>Correo electronico</label>
-       <input type="email" placeholder="Escribe tu Correo electronico" name="email">
-       <label>Password</label>
-       <input type="password" placeholder="Escribe tu password" name="password">
-       <input type="hidden" name="type" value="coustumer">
-       <button type="submit">Registrarse</button>
-   </form>
+    {!! Form::open(['route' => ['coustumer.create'], 'method' => 'POST']) !!}
+    <label>Nombre</label>
+    <input type="text" placeholder="Escribe tu nombre" name="name">
+    <label>Correo electronico</label>
+    <input type="email" placeholder="Escribe tu Correo electronico" name="email">
+    <label>Password</label>
+    <input type="password" placeholder="Escribe tu password" name="password">
+    <button type="submit" class="btn btn-info" role="button">Registrarse</button>
+    {!! Form::close() !!}
 
 @endsection
