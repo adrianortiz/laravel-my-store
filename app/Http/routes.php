@@ -239,15 +239,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-            Route::get('ventas', [
-                'uses' => 'CartController@index',
-                'as' => 'admin.carrito'
-            ]);
 
-            Route::post('ventas', [
-                'uses' => 'CartController@store',
-                'as' => 'user.carrito.store'
-            ]);
 
 
 
@@ -262,3 +254,42 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::auth();
+
+
+Route::get('carrito', [
+    'uses' => 'Coustumer\CartController@index',
+    'as' => 'cliente.carrito.index'
+]);
+
+Route::post('carrito', [
+    'uses' => 'Coustumer\CartController@store',
+    'as' => 'cliente.carrito.store'
+]);
+
+// Update item from cart
+Route::put('carrito/product/orden/update', [
+    'uses'  => 'Coustumer\CartController@update',
+    'as'    => 'store.front.product.orden.update'
+]);
+
+
+// Eliminar carrito
+Route::delete('carrito/trash', [
+    'uses'   => 'Coustumer\CartController@trash',
+    'as'    => 'store.front.product.orden.trash'
+]);
+
+
+// delete a item
+Route::delete('carrito/product/orden/delete', [
+    'uses'  => 'Coustumer\CartController@delete',
+    'as'    => 'store.front.product.orden.delete'
+]);
+
+
+/// ========= ORDER DETAIL =========
+Route::get('carrito/order', [
+    'middleware' => 'auth',
+    'uses'   => 'Coustumer\CartController@orderDetail',
+    'as'    => 'store.front.product.orden.detail'
+]);

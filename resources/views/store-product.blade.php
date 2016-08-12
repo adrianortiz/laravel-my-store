@@ -72,7 +72,7 @@
         </div>
 
         @forelse($relacionados as $relacionado)
-            <div class="item">
+            <div class="item" data-product="{{ $relacionado->id }}">
                 <div>
                     <img src="{{ asset('media/photo-items/' . $relacionado->img_name) }}" height="100%"/>
                 </div>
@@ -80,7 +80,7 @@
                     <li>${{ $relacionado->price }}</li>
                     <li><a href="{{ route('store.show.item', [$relacionado->id, \Illuminate\Support\Str::slug($relacionado->name)]) }}">{{ $relacionado->name }}</a></li>
                     <li><a href="{{ route('store.show.item', [$relacionado->id, \Illuminate\Support\Str::slug($relacionado->name)]) }}">{{ $relacionado->desc }}</a></li>
-                    <li><input type="button" value="Añadir a la cesta"> <a href="{{ route('store.show.item', [$relacionado->id, \Illuminate\Support\Str::slug($relacionado->name)]) }}">Detalles</a></li>
+                    <li><input type="button" class="btn-add-by-one" data-product="{{ $relacionado->id }}" value="Añadir a la cesta"> <a href="{{ route('store.show.item', [$relacionado->id, \Illuminate\Support\Str::slug($relacionado->name)]) }}">Detalles</a></li>
                 </ul>
             </div>
         @empty
@@ -136,5 +136,12 @@
         @endforeach
 
     </section>
+
+@endsection
+
+
+@section('extra-scripts')
+
+    @include('store-form-js')
 
 @endsection

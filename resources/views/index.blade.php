@@ -53,7 +53,7 @@
                 <li>${{ $producto->price }}</li>
                 <li><a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">{{ $producto->name }}</a></li>
                 <li><a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">{{ $producto->desc }}</a></li>
-                <li><input type="button" value="Añadir a la cesta"> <a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">Detalles</a></li>
+                <li><input type="button" class="btn-add-by-one" data-product="{{ $producto->id }}" value="Añadir a la cesta"> <a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">Detalles</a></li>
             </ul>
         </div>
         @endif
@@ -106,5 +106,12 @@
     @endforeach
 
 </section>
+
+@endsection
+
+
+@section('extra-scripts')
+
+    @include('store-form-js')
 
 @endsection

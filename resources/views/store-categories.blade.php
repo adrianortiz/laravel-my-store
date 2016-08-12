@@ -10,7 +10,7 @@
         </div>
 
         @forelse($productos as $producto)
-                <div class="item">
+                <div class="item" data-product="{{ $producto->id }}">
                     <div>
                         <img src="{{ asset('media/photo-items/' . $producto->img_name) }}" height="100%"/>
                     </div>
@@ -18,7 +18,7 @@
                         <li>${{ $producto->price }}</li>
                         <li><a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">{{ $producto->name }}</a></li>
                         <li><a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">{{ $producto->desc }}</a></li>
-                        <li><input type="button" value="Añadir a la cesta"> <a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">Detalles</a></li>
+                        <li><input type="button" class="btn-add-by-one" data-product="{{ $producto->id }}" value="Añadir a la cesta"> <a href="{{ route('store.show.item', [$producto->id, \Illuminate\Support\Str::slug($producto->name)]) }}">Detalles</a></li>
                     </ul>
                 </div>
         @empty
@@ -74,5 +74,12 @@
         @endforeach
 
     </section>
+
+@endsection
+
+
+@section('extra-scripts')
+
+    @include('store-form-js')
 
 @endsection

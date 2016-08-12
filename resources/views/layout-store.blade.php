@@ -7,6 +7,13 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('components/slick/slick-theme.css') }}"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/index.css') }}"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+
+    <style>
+        .right {
+            float: right !important;
+        }
+    </style>
+
     @yield('extra-css')
     <title>@yield('title', 'Furniture')</title>
 </head>
@@ -16,12 +23,7 @@
         <div id="menu-container">
             <ul>
                 <li><a href="{{ url('/') }}" class="menu-selected">Inicio</a></li>
-                <li><a href="#">Nuevo</a></li>
-                <li><a href="#">Destacados</a></li>
-                <li><a href="#">Más vendidos</a></li>
-                <li><a href="#">Ofertas</a></li>
-                <li><a href="#">Fabricantes</a></li>
-                <li><a href="#">Contactos</a></li>
+                <li><a href="#">Contacto</a></li>
                 <li><a href="{{ url('/home') }}">Administración</a></li>
                 <li><a href="{{ url('/register') }}">Crear cuenta</a></li>
             </ul>
@@ -50,11 +52,11 @@
         </a>
         <ul id="cart-container-global">
             <li>
-                <a href="{{route('coustumer.carrito')}}">
+                <a href="{{route('cliente.carrito.index')}}">
                     <img src="{{ asset('media/icon/cart-icon.png') }}" width="30" height="25"/>
                     <span id="cart-info">Carrito:</span>
                     <span id="cart-desc">Carrito de compras</span>
-                    <span id="cart-count">0 Productos</span>
+                    <span id="cart-count">Productos</span>
                 </a>
             </li>
             <li>
