@@ -28,7 +28,7 @@ class ProveedoresController extends Controller
             ->join('correo', 'correo.proveedores_id', '=', 'proveedores.id')
             ->select('*', 'telefonos.num AS num_tel')
             ->get();
-        return view('admin.panel-proveedor', compact('proveedores'));
+        return view('admin.panel-proveedor', compact('proveedores'), compact('errorsUp'));
     }
 
     /**
@@ -49,6 +49,27 @@ class ProveedoresController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nom_empresa' => 'required|max:255',
+            'nom_contacto' => 'required|max:255|string',
+            'ap_paterno' => 'required|max:255|string',
+            'ap_materno' => 'required|max:255|string',
+
+            'desc_dir' => 'required|max:255',
+            'estado' => 'required|max:255|string',
+            'municipio' => 'required|max:255|string',
+            'colonia' => 'required|max:255|string',
+            'calle' => 'required|max:255|string',
+            'num_dir' => 'required|max:255|numeric',
+            'cp' => 'required|min:7|numeric',
+
+            'desc_tel' => 'required|max:255',
+            'num_tel' => 'required|numeric',
+
+            'desc_mail' => 'required|max:255',
+            'correo' => 'required|email|max:255'
+        ]);
+
         DB::beginTransaction();
         try {
             $proveedor = new Proveedor();
@@ -108,7 +129,14 @@ class ProveedoresController extends Controller
      */
     public function edit($id)
     {
-        //
+        $proveedor = Proveedor::join('telefonos', 'telefonos.proveedores_id', '=', 'proveedores.id')
+            ->join('direcciones', 'direcciones.proveedores_id', '=', 'proveedores.id')
+            ->join('correo', 'correo.proveedores_id', '=', 'proveedores.id')
+            ->where('proveedores.id', $id)
+            ->select('*', 'telefonos.num AS num_tel', 'direcciones.num AS num_dir', 'direcciones.desc AS desc_dir', 'telefonos.desc AS desc_tel', 'correo.desc AS desc_mail')
+            ->first();
+
+        return view('admin.partials.panel-edit-proveedor', compact('proveedor'));
     }
 
     /**
@@ -117,44 +145,55 @@ class ProveedoresController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $id = $request->idUp;
+        $this->validate($request, [
+            'nom_empresa' => 'required|max:255',
+            'nom_contacto' => 'required|max:255|string',
+            'ap_paterno' => 'required|max:255|string',
+            'ap_materno' => 'required|max:255|string',
+
+            'desc_dir' => 'required|max:255',
+            'estado' => 'required|max:255|string',
+            'municipio' => 'required|max:255|string',
+            'colonia' => 'required|max:255|string',
+            'calle' => 'required|max:255|string',
+            'num_dir' => 'required|max:255|numeric',
+            'cp' => 'required|min:7|numeric',
+
+            'desc_tel' => 'required|max:255',
+            'num_tel' => 'required|numeric',
+
+            'desc_mail' => 'required|max:255',
+            'correo' => 'required|email|max:255'
+        ]);
 
         DB::beginTransaction();
         try {
             $proveedor = Proveedor::findOrFail($id);
-            $proveedor->nom_empresa = $request->nom_empresaUp;
-            $proveedor->nom_contacto = $request->nom_contactoUp;
-            $proveedor->ap_paterno = $request->ap_paternoUp;
-            $proveedor->ap_materno = $request->ap_maternoUp;
+            $proveedor->fill($request->all());
             $proveedor->save();
 
             $direccionId = Direccion::where('proveedores_id', $id)->select('id')->first();
             $direccion = Direccion::findOrFail($direccionId->id);
-            $direccion->desc = $request->desc_dirUp;
-            $direccion->estado = $request->estadoUp;
-            $direccion->municipio = $request->municipioUp;
-            $direccion->colonia = $request->coloniaUp;
-            $direccion->calle = $request->calleUp;
-            $direccion->num = $request->num_dirUp;
-            $direccion->cp = $request->cpUp;
-            $direccion->proveedores_id = $proveedor->id;
+            $direccion->desc = $request->desc_dir;
+            $direccion->desc = $request->num_dir;
+            $direccion->fill($request->all());
+            $direccion->proveedores_id = $id;
             $direccion->save();
 
             $telefonoId = Telefono::where('proveedores_id', $id)->select('id')->first();
             $telefono = Telefono::findOrFail($telefonoId->id);
-            $telefono->desc = $request->desc_telUp;
-            $telefono->num = $request->num_telUp;
-            $telefono->proveedores_id = $proveedor->id;
+            $telefono->desc = $request->desc_tel;
+            $telefono->num = $request->num_tel;
+            $telefono->proveedores_id = $id;
             $telefono->save();
 
             $correoId = Correo::where('proveedores_id', $id)->select('id')->first();
             $correo = Correo::findOrFail($correoId->id);
             $correo->fill($request->all());
-            $correo->desc = $request->desc_mailUp;
-            $correo->correo = $request->correoUp;
-            $correo->proveedores_id = $proveedor->id;
+            $correo->desc = $request->desc_mail;
+            $correo->proveedores_id = $id;
             $correo->save();
 
             DB::commit();
@@ -162,7 +201,7 @@ class ProveedoresController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Session::flash('message', 'Ocurrio un problema ' . $e->getMessage());
-            return \Redirect::route('admin.proveedores');
+            return \Redirect::route('admin.proveedores.edit', $id)->withInput();
         }
     }
 

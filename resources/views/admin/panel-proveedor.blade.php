@@ -53,7 +53,7 @@
                             </td>
                             <td width="160">
                                 <div class="btn-group" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-default btn-edit">Editar</button>
+                                    <a href="{{ route('admin.proveedores.edit', $proveedor->id) }}" class="btn btn-default">Editar</a>
                                     <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
                                 </div>
                             </td>
@@ -101,7 +101,7 @@
     </div>
 </div>
 
-
+{{--{{ $errorsUp }}--}}
 <!-- Modals -->
 <!-- Create -->
 <div class="modal fade" id="modalProveedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -117,6 +117,19 @@
             </div>
 
             <div class="modal-body">
+                    @if(! $errors->isEmpty())
+                        <div class="alert alert-danger" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4>Corrige los siguientes campos</h4>
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab"
@@ -143,14 +156,13 @@
                             <label for="nom_empresa" class="col-sm-2 control-label">Nombre empresa</label>
 
                             <div class="col-sm-10">
-                                {!! Form::text('nom_empresa', old('nom_empresa'), ['id' => 'nom_empresa', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nom_empresa', old('nom_empresa'), ['id' => 'nom_empresa', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="nom_contacto" class="col-sm-2 control-label">Nombre:</label>
-
                             <div class="col-sm-10">
-                                {!! Form::text('nom_contacto', old('nom_contacto'), ['id' => 'nom_contacto', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('nom_contacto', old('nom_contacto'), ['id' => 'nom_contacto', 'class' => 'form-control']) !!}
                             </div>
                         </div>
 
@@ -158,14 +170,14 @@
                             <label for="ap_paterno" class="col-sm-2 control-label">Apellido Paterno:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::text('ap_paterno', old('ap_paterno'), ['id' => 'ap_paterno', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('ap_paterno', old('ap_paterno'), ['id' => 'ap_paterno', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="ap_materno" class="col-sm-2 control-label">Apellido Materno:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::text('ap_materno', old('ap_materno'), ['id' => 'ap_materno', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('ap_materno', old('ap_materno'), ['id' => 'ap_materno', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         </p>
@@ -179,49 +191,49 @@
                             <label for="desc_dir" class="col-sm-2 control-label">Descripción:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::text('desc_dir', old('desc_dir'), ['id' => 'desc_dir', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('desc_dir', old('desc_dir'), ['id' => 'desc_dir', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="estado" class="col-sm-2 control-label">Estado:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::text('estado', old('estado'), ['id' => 'estado', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('estado', old('estado'), ['id' => 'estado', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="municipio" class="col-sm-2 control-label">Municipio:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::text('municipio', old('municipio'), ['id' => 'municipio', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('municipio', old('municipio'), ['id' => 'municipio', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="colonia" class="col-sm-2 control-label">Colonia:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::text('colonia', old('colonia'), ['id' => 'colonia', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('colonia', old('colonia'), ['id' => 'colonia', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="calle" class="col-sm-2 control-label">Calle:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::text('calle', old('calle'), ['id' => 'calle', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('calle', old('calle'), ['id' => 'calle', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="num_dir" class="col-sm-2 control-label">Número:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::number('num_dir', old('num_dir'), ['id' => 'num_dir', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::number('num_dir', old('num_dir'), ['id' => 'num_dir', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="cp" class="col-sm-2 control-label">Codigo Postal:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::number('cp', old('cp'), ['id' => 'cp', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::number('cp', old('cp'), ['id' => 'cp', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         </p>
@@ -235,14 +247,14 @@
                             <label for="desc_tel" class="col-sm-2 control-label">Descripción:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::text('desc_tel', old('desc_tel'), ['id' => 'desc_tel', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('desc_tel', old('desc_tel'), ['id' => 'desc_tel', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="num_tel" class="col-sm-2 control-label">Número:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::number('num_tel', old('num_tel'), ['id' => 'num_tel', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('num_tel', old('num_tel'), ['id' => 'num_tel', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         </p>
@@ -256,14 +268,14 @@
                             <label for="desc_mail" class="col-sm-2 control-label">Descripción:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::text('desc_mail', old('desc_mail'), ['id' => 'desc_mail', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::text('desc_mail', old('desc_mail'), ['id' => 'desc_mail', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="correo" class="col-sm-2 control-label">Correo:</label>
 
                             <div class="col-sm-10">
-                                {!! Form::email('correo', old('correo'), ['id' => 'correo', 'class' => 'form-control', 'required']) !!}
+                                {!! Form::email('correo', old('correo'), ['id' => 'correo', 'class' => 'form-control']) !!}
                             </div>
                         </div>
                         </p>
@@ -306,181 +318,181 @@
 
 
 <!-- Update And Select -->
-<div class="modal fade" id="modalUpProveedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+{{--<div class="modal fade" id="modalUpProveedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--}}
+    {{--<div class="modal-dialog" role="document">--}}
 
-        {!! Form::open(['route' => 'admin.proveedores.update', 'method' => 'PUT', 'class' => 'form-horizontal', 'id' => 'form-edit']) !!}
-        {!! Form::hidden('idUp', old('idUp'), ['id' => 'idUp']) !!}
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Editar Proveedor</h4>
-            </div>
+        {{--{!! Form::open(['route' => 'admin.proveedores.update', 'method' => 'PUT', 'class' => 'form-horizontal', 'id' => 'form-edit']) !!}--}}
+        {{--{!! Form::hidden('idUp', old('idUp'), ['id' => 'idUp']) !!}--}}
+        {{--<div class="modal-content">--}}
+            {{--<div class="modal-header">--}}
+                {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span--}}
+                            {{--aria-hidden="true">&times;</span></button>--}}
+                {{--<h4 class="modal-title" id="myModalLabel">Editar Proveedor</h4>--}}
+            {{--</div>--}}
 
-            <div class="modal-body">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#infoUp" aria-controls="infoUp" role="tab"
-                                                              data-toggle="tab">Información.</a></li>
-                    <li role="presentation"><a href="#dirUp" aria-controls="dirUp" role="tab"
-                                               data-toggle="tab">Dirección.</a>
-                    </li>
-                    <li role="presentation"><a href="#telUp" aria-controls="telUp" role="tab"
-                                               data-toggle="tab">Teléfono.</a>
-                    </li>
-                    <li role="presentation"><a href="#mailUp" aria-controls="mailUp" role="tab"
-                                               data-toggle="tab">Correo.</a>
-                    </li>
-                </ul>
+            {{--<div class="modal-body">--}}
+                {{--<!-- Nav tabs -->--}}
+                {{--<ul class="nav nav-tabs" role="tablist">--}}
+                    {{--<li role="presentation" class="active"><a href="#infoUp" aria-controls="infoUp" role="tab"--}}
+                                                              {{--data-toggle="tab">Información.</a></li>--}}
+                    {{--<li role="presentation"><a href="#dirUp" aria-controls="dirUp" role="tab"--}}
+                                               {{--data-toggle="tab">Dirección.</a>--}}
+                    {{--</li>--}}
+                    {{--<li role="presentation"><a href="#telUp" aria-controls="telUp" role="tab"--}}
+                                               {{--data-toggle="tab">Teléfono.</a>--}}
+                    {{--</li>--}}
+                    {{--<li role="presentation"><a href="#mailUp" aria-controls="mailUp" role="tab"--}}
+                                               {{--data-toggle="tab">Correo.</a>--}}
+                    {{--</li>--}}
+                {{--</ul>--}}
 
-                <!-- Tab panes -->
-                <div class="tab-content">
+                {{--<!-- Tab panes -->--}}
+                {{--<div class="tab-content">--}}
 
-                    <!-- Tab General Information -->
-                    <div role="tabpanel" class="tab-pane active" id="infoUp">
-                        <p>
+                    {{--<!-- Tab General Information -->--}}
+                    {{--<div role="tabpanel" class="tab-pane active" id="infoUp">--}}
+                        {{--<p>--}}
 
-                        <div class="form-group">
-                            <label for="nom_empresaUp" class="col-sm-2 control-label">Nombre empresa</label>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="nom_empresaUp" class="col-sm-2 control-label">Nombre empresa</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::text('nom_empresaUp', old('nom_empresaUp'), ['id' => 'nom_empresaUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="nom_contactoUp" class="col-sm-2 control-label">Nombre:</label>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::text('nom_empresaUp', old('nom_empresaUp'), ['id' => 'nom_empresaUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label for="nom_contactoUp" class="col-sm-2 control-label">Nombre:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::text('nom_contactoUp', old('nom_contactoUp'), ['id' => 'nom_contactoUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::text('nom_contactoUp', old('nom_contactoUp'), ['id' => 'nom_contactoUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
-                        <div class="form-group">
-                            <label for="ap_paternoUp" class="col-sm-2 control-label">Apellido Paterno:</label>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="ap_paternoUp" class="col-sm-2 control-label">Apellido Paterno:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::text('ap_paternoUp', old('ap_paternoUp'), ['id' => 'ap_paternoUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="ap_maternoUp" class="col-sm-2 control-label">Apellido Materno:</label>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::text('ap_paternoUp', old('ap_paternoUp'), ['id' => 'ap_paternoUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label for="ap_maternoUp" class="col-sm-2 control-label">Apellido Materno:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::text('ap_maternoUp', old('ap_maternoUp'), ['id' => 'ap_maternoUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        </p>
-                    </div>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::text('ap_maternoUp', old('ap_maternoUp'), ['id' => 'ap_maternoUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</p>--}}
+                    {{--</div>--}}
 
-                    <!-- Addres -->
-                    <div role="tabpanel" class="tab-pane" id="dirUp">
-                        <p>
+                    {{--<!-- Addres -->--}}
+                    {{--<div role="tabpanel" class="tab-pane" id="dirUp">--}}
+                        {{--<p>--}}
 
-                        <div class="form-group">
-                            <label for="desc_dirUp" class="col-sm-2 control-label">Descripción:</label>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="desc_dirUp" class="col-sm-2 control-label">Descripción:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::text('desc_dirUp', old('desc_dirUp'), ['id' => 'desc_dirUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="estadoUp" class="col-sm-2 control-label">Estado:</label>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::text('desc_dirUp', old('desc_dirUp'), ['id' => 'desc_dirUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label for="estadoUp" class="col-sm-2 control-label">Estado:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::text('estadoUp', old('estadoUp'), ['id' => 'estadoUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="municipioUp" class="col-sm-2 control-label">Municipio:</label>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::text('estadoUp', old('estadoUp'), ['id' => 'estadoUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label for="municipioUp" class="col-sm-2 control-label">Municipio:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::text('municipioUp', old('municipioUp'), ['id' => 'municipioUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="coloniaUp" class="col-sm-2 control-label">Colonia:</label>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::text('municipioUp', old('municipioUp'), ['id' => 'municipioUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label for="coloniaUp" class="col-sm-2 control-label">Colonia:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::text('coloniaUp', old('coloniaUp'), ['id' => 'coloniaUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="calleUp" class="col-sm-2 control-label">Calle:</label>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::text('coloniaUp', old('coloniaUp'), ['id' => 'coloniaUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label for="calleUp" class="col-sm-2 control-label">Calle:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::text('calleUp', old('calleUp'), ['id' => 'calleUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="num_dirUp" class="col-sm-2 control-label">Número:</label>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::text('calleUp', old('calleUp'), ['id' => 'calleUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label for="num_dirUp" class="col-sm-2 control-label">Número:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::number('num_dirUp', old('num_dirUp'), ['id' => 'num_dirUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="cpUp" class="col-sm-2 control-label">Codigo Postal:</label>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::number('num_dirUp', old('num_dirUp'), ['id' => 'num_dirUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label for="cpUp" class="col-sm-2 control-label">Codigo Postal:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::number('cpUp', old('cpUp'), ['id' => 'cpUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        </p>
-                    </div>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::number('cpUp', old('cpUp'), ['id' => 'cpUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</p>--}}
+                    {{--</div>--}}
 
-                    <!-- Phone -->
-                    <div role="tabpanel" class="tab-pane" id="telUp">
-                        <p>
+                    {{--<!-- Phone -->--}}
+                    {{--<div role="tabpanel" class="tab-pane" id="telUp">--}}
+                        {{--<p>--}}
 
-                        <div class="form-group">
-                            <label for="desc_telUp" class="col-sm-2 control-label">Descripción:</label>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="desc_telUp" class="col-sm-2 control-label">Descripción:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::text('desc_telUp', old('desc_telUp'), ['id' => 'desc_telUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="num_telUp" class="col-sm-2 control-label">Número:</label>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::text('desc_telUp', old('desc_telUp'), ['id' => 'desc_telUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label for="num_telUp" class="col-sm-2 control-label">Número:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::number('num_telUp', old('num_telUp'), ['id' => 'num_telUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        </p>
-                    </div>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::number('num_telUp', old('num_telUp'), ['id' => 'num_telUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</p>--}}
+                    {{--</div>--}}
 
-                    <!-- Mail -->
-                    <div role="tabpanel" class="tab-pane" id="mailUp">
-                        <p>
+                    {{--<!-- Mail -->--}}
+                    {{--<div role="tabpanel" class="tab-pane" id="mailUp">--}}
+                        {{--<p>--}}
 
-                        <div class="form-group">
-                            <label for="desc_mailUp" class="col-sm-2 control-label">Descripción:</label>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="desc_mailUp" class="col-sm-2 control-label">Descripción:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::text('desc_mailUp', old('desc_mailUp'), ['id' => 'desc_mailUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="correoUp" class="col-sm-2 control-label">Correo:</label>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::text('desc_mailUp', old('desc_mailUp'), ['id' => 'desc_mailUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<label for="correoUp" class="col-sm-2 control-label">Correo:</label>--}}
 
-                            <div class="col-sm-10">
-                                {!! Form::email('correoUp', old('correoUp'), ['id' => 'correoUp', 'class' => 'form-control', 'required']) !!}
-                            </div>
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
+                            {{--<div class="col-sm-10">--}}
+                                {{--{!! Form::email('correoUp', old('correoUp'), ['id' => 'correoUp', 'class' => 'form-control']) !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            </div>
-        </div>
-        {!! Form::close() !!}
-    </div>
-</div>
+            {{--<div class="modal-footer">--}}
+                {{--<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>--}}
+                {{--<button type="submit" class="btn btn-primary">Guardar</button>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--{!! Form::close() !!}--}}
+    {{--</div>--}}
+{{--</div>--}}
 
 <!-- Forms -->
 <!-- Eliminar -->
@@ -494,4 +506,12 @@
 @section('extra-scripts')
     <script>$('header div ul li:nth-child(4) a').addClass('active-menu');</script>
     <script src=" {{ asset('js/panel-proveedor.js') }}"></script>
+
+    @if(! $errors->isEmpty())
+        <script>
+            $(document).ready(function () {
+                $('#modalProveedor').modal('show');
+            });
+        </script>
+    @endif
 @endsection
