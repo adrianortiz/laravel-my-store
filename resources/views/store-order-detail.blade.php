@@ -8,7 +8,7 @@
         <article>
             <h3>
                 Detalle de la orden
-                <a href="{{ route('store.front.product.orden.show', [$tienda->store_route]) }}" class="btn btn-sm btn-border-yellow right">Volver al carrito</a>
+                <a href="{{ route('cliente.carrito.index') }}" class="btn btn-sm btn-border-yellow right">Volver al carrito</a>
             </h3>
 
         </article>
@@ -33,11 +33,11 @@
                 <tbody>
                     @foreach($cart as $item)
                         <tr>
-                            <td width="120px"><img src="{{ asset('/media/photo-product/' . $item->img) }}" width="100"/></td>
+                            <td width="120px"><img src="{{ asset('/media/photo-items/' . $item->img_name) }}" width="100"/></td>
                             <td style="text-align: left">
-                                <ul>
-                                    <li class="cd-link">{{ $item->nombre }}</li>
-                                    <li>${{ $item->precio  . ' ' . $item->tipo_oferta. $item->regla_porciento . '%'}}</li>
+                                <ul style="list-style: none; padding: 0">
+                                    <li class="cd-link">{{ $item->name }}</li>
+                                    <li>${{ $item->price  . ' -' . $item->offert . '%'}}</li>
                                 </ul>
                             </td>
                             <td>${{ number_format($item->final_price, 2) }}</td>
@@ -60,19 +60,18 @@
     </section>
 
     @if($pago == 1)
-        {!! Form::open(['route' => ['payment.card', $tienda->store_route], 'method' => 'POST', 'id' => 'form-order-card-new']) !!}
+        <!-- TARJETA DE CREDITO -->
+        {!! Form::open(['route' => ['payment.card', 1], 'method' => 'POST', 'id' => 'form-order-card-new']) !!}
     @endif
 
     @if($pago == 2)
-        {!! Form::open(['route' => ['payment', $tienda->store_route], 'method' => 'GET', 'id' => 'form-oder-paypal-new']) !!}
+        <!-- PAYPAL -->
+        {!! Form::open(['route' => ['payment', 2], 'method' => 'GET', 'id' => 'form-oder-paypal-new']) !!}
         {!! Form::hidden('card', 1) !!}
     @endif
 
     <section class="form-basic-section">
         <article>
-
-            {!! Form::hidden('idEmpresa', $tienda->empresa_id) !!}
-            {!! Form::hidden('idTienda', $tienda->id) !!}
 
             <div class="row col-sm-6">
                 <div class="col-sm-12">
@@ -84,19 +83,19 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="disabledTextInput">Nombre y apellido</label>
-                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Nombre y Apellido" value="{{ $userContacto[0]->nombre . ' ' . $userContacto[0]->ap_paterno }}" required="required">
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Nombre y Apellido" value="{{ $userContacto[0]->name . ' ' . $userContacto[0]->paterno . ' ' . $userContacto[0]->materno }}" required="required">
                     </div>
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="disabledTextInput">Compañia</label>
-                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Compañia">
+                        <label for="disabledTextInput">Fecha de nacimiento</label>
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Compañia" value="{{ $userContacto[0]->fecha_na  }}">
                     </div>
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="disabledTextInput">Correo</label>
-                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Correo" value="{{ Auth::user()->email }}" required="required">
+                        <input type="text" name="mail_user" id="disabledTextInput" class="form-control" placeholder="Correo" value="{{ Auth::user()->email }}" required="required">
                     </div>
                 </div>
             </div>
@@ -170,7 +169,7 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="cp">Código Postal</label>
-                        <input type="text" id="cp" name="cp" class="form-control" placeholder="06060" required="required">
+                        <input type="number" id="cp" name="cp" class="form-control" placeholder="06060" required="required">
                     </div>
                 </div>
             </div>
@@ -231,7 +230,7 @@
     <section class="container-products">
         <article>
             @if($pago == 1)
-                {!! Form::submit('Pagar con Tarjeta de crédito', ['class' => 'btn']) !!}
+                {!! Form::submit('Pagar con Tarjeta de crédito', ['class' => 'btn btn-default']) !!}
             @endif
 
             @if($pago == 2)

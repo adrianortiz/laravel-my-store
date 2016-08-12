@@ -1,8 +1,10 @@
 @extends('layout-store')
 
-@section('title', 'Forniture Store')
+@section('title', 'Codizer Tienda')
 
 @section('content')
+
+    @include('admin.partials.messages')
 
 <div class="container-slider">
 

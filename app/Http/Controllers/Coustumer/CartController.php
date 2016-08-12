@@ -4,8 +4,10 @@ namespace CodizerTienda\Http\Controllers\Coustumer;
 
 
 use CodizerTienda\Producto;
+use CodizerTienda\User;
 use Illuminate\Http\Request;
 use CodizerTienda\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -207,10 +209,12 @@ class CartController extends Controller {
 
         $pago = $request['pago'];
 
+        $userContacto = User::where('id', '=', Auth::user()->id)->get();
+
         $cart = Session::get('cart');
         // dd($cart);
         $total = $this->total('cart');
 
-        return view('store-order-detail', compact('tienda', 'userContacto', 'userPerfil', 'cart', 'total', 'pago'));
+        return view('store-order-detail', compact('userContacto','cart', 'total', 'pago'));
     }
 }

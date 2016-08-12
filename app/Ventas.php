@@ -13,6 +13,6 @@ class Ventas extends Model
 {
     protected $table = 'ventas';
     protected $primaryKey = 'id';
-    protected $fillable = ['user_id','total'];
+    protected $fillable = ['total'];
     public $timestamps = false;
 }

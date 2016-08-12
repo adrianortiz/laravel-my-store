@@ -323,3 +323,31 @@ Route::get('carrito/order', [
     'uses'   => 'Coustumer\CartController@orderDetail',
     'as'    => 'store.front.product.orden.detail'
 ]);
+
+
+
+
+/**
+ * PAYPAL ROUTES API
+ */
+
+// Enviamos nuestro pedido a Paypal
+Route::get('payment/{tiendaRoute}', [
+    'uses'   => 'Coustumer\PaypalController@postPayment',
+    'as'    => 'payment'
+]);
+
+// Paypal redirecciona a esta ruta
+Route::get('payment/status', [
+    'uses'  => 'Coustumer\PaypalController@getPaymentStatus',
+    'as'    => 'payment.status'
+]);
+
+
+/*
+* PAY CARD
+*/
+    Route::post('payment/card/', [
+        'uses'   => 'Coustumer\OrdenController@postPaymentCard',
+        'as'    => 'payment.card'
+    ]);
