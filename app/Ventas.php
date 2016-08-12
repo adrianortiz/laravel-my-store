@@ -5,7 +5,7 @@ namespace CodizerTienda;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Venta
+ * CodizerTienda\Venta
  *
  * @mixin \Eloquent
  */
