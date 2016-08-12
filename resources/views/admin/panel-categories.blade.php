@@ -33,9 +33,9 @@
                         <p>Categoria</p>
 
                         <p>
-                            {!! Form::open(['route' => ['admin.categorias.destroy', $categoria], 'method' => 'DELETE']) !!}
+                            {!! Form::open(['route' => ['admin.categorias.destroy', $categoria->id], 'method' => 'DELETE']) !!}
                             <a href="{{route('admin.categorias.editar', $categoria)}}" class="btn btn-info"
-                               id="btnUpdate">Editar</a>
+                               id="btnUpdate">Actualizar</a>
                             <button type="submit" class="btn btn-danger" role="button">Eliminar</button>
                             {!! Form::close() !!}
                         </p>
@@ -128,7 +128,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-info">Guardar</button>
             </div>
         </div>
@@ -152,6 +152,8 @@
             @else
                $('#modalCategoriesUpdate').modal('hide');
             @endif
+
+
         });
     </script>
 

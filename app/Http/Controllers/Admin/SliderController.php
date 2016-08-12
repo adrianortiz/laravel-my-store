@@ -78,7 +78,7 @@ class SliderController extends Controller
         $sliders = Slider::all();
         $slider = Slider::where('id', $id)
             ->select('*')
-            ->get();
+            ->first();
 
         $modal = true;
 

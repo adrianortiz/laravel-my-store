@@ -20,7 +20,6 @@ class CategoriasController extends Controller
     public function index()
     {
         $categorias = Categoria::all();
-
         $modal = false;
         return view('admin.panel-categories', compact('categorias'), compact('modal'));
     }
@@ -74,7 +73,7 @@ class CategoriasController extends Controller
         $categorias = Categoria::all();
         $categoria = Categoria::where('id', $id)
             ->select('*')
-            ->get();
+            ->first();
 
         $modal = true;
 
