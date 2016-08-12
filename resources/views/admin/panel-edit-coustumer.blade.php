@@ -12,44 +12,53 @@
             </h1>
         </div>
 
-    <style>
-        #edit {
-            width: 800px;
-            margin: 0 auto;
-            display: block;
-        }
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"></div>
 
-        input{
-            display: inline-block;
-            width: 450px;
-            margin-bottom: 25px;
-        }
+                        <div id="edit" class="panel-body">
+                            {!! Form::open(['route' => ['coustumer.update', $user[0]->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+                            {!! Form::hidden('id', $user[0]->id) !!}
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Nombre</label>
 
-        label {
-            width: 300px;
-        }
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="name" value="{{ $user[0]->name }}">
+                                </div>
+                            </div>
 
-        button{
-            width: 200px;
-            margin: 0 auto;
-            display: block;
-            margin-top: 50px;
-        }
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Email</label>
 
-    </style>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" name="email" value="{{ $user[0]->email }}">
+                                </div>
+                            </div>
 
-    <div id="edit">
-        {!! Form::open(['route' => ['coustumer.update', $user[0]->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
-        {!! Form::hidden('id', $user[0]->id) !!}
-        {!! Form::label('name', 'Nombre') !!}
-        {!! Form::text('name', $user[0]->name) !!}
-        {!! Form::label('email', 'E-mail') !!}
-        {!! Form::email('email', $user[0]->email) !!}
-        {!! Form::label('password', 'Password') !!}
-        {!! Form::password('password') !!}
-        {!! Form::submit('Guardar') !!}
-        {!! Form::close() !!}
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Password</label>
+
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-info" role="button">Actualizar</button>
+                                    <a href="{{ route('coustumer.show') }}" class="btn btn-danger">Cancelar</a>
+                                </div>
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
 @endsection
 

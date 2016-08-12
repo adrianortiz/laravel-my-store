@@ -14,76 +14,80 @@
     </div>
 
     <style>
-        table{
-            width: 1200px;
+        div .panel {
+            width: 1100px;
             margin: 0 auto;
-            display: block;
-            text-align: center;
-
-        }
-
-        tbody{
-            width: 100%;
-        }
-
-        th{
-            width: 300px;
-            text-align: center;
-
+            margin-bottom: 20px;
         }
 
         button{
             right: 0;
         }
 
-        td{
-            padding-bottom: 15px;
-        }
-
         #buttons form{
             display: inline-block;
+            right: 0;
+            float: right;
+            padding-left: 20px;
+        }
+
+        #act{
+            text-align: right;
         }
     </style>
 
     @include('admin.partials.messages')
 
-    <table>
-        <tbody>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Type</th>
-            <th></th>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"></div>
 
-        </tr>
-        @foreach($users as $user)
+        <!-- Table -->
+        <table class="table">
+            <thead>
             <tr>
-                <td>
-                    {{ $user->name }}
-                </td>
-                <td>
-                    {{ $user->email }}
-                </td>
-                <td>
-                    {{ $user->type }}
-                </td>
-                <td>
-                    <div id="buttons">
-                        {!! Form::open(['route' => ['admin.edit', $user->id], 'method' => 'GET']) !!}
-                        <input type="hidden" value="$user->id">
-                        <button type="submit" class="btn btn-info" role="button">Editar</button>
-                        {!! Form::close() !!}
-
-                        {!! Form::open(['route' => ['admin.destroy', $user->id], 'method' => 'DELETE']) !!}
-                        <button type="submit" class="btn btn-danger" role="button">Borrar</button>
-                        {!! Form::close() !!}
-                    </div>
-
-                </td>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Type</th>
+                <th id="act">Actions</th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
+            </thead>
+
+            <?php $acum =0; ?>
+            @foreach($users as $user)
+                <tbody>
+                <tr>
+                    <td>
+                        {{ $acum = $acum + 1 }}
+                    </td>
+                    <td>
+                        {{ $user->name }}
+                    </td>
+                    <td>
+                        {{ $user->email }}
+                    </td>
+                    <td>
+                        {{ $user->type }}
+                    </td>
+                    <td>
+                        <div id="buttons">
+                            {!! Form::open(['route' => ['admin.edit', $user->id], 'method' => 'GET']) !!}
+                            <input type="hidden" value="$user->id">
+                            <button type="submit" class="btn btn-info" role="button">Editar</button>
+                            {!! Form::close() !!}
+
+                            {!! Form::open(['route' => ['admin.destroy', $user->id], 'method' => 'DELETE']) !!}
+                            <button type="submit" class="btn btn-danger" role="button">Borrar</button>
+                            {!! Form::close() !!}
+                        </div>
+
+                    </td>
+                </tr>
+                @endforeach
+                </tbody>
+        </table>
+    </div>
 
     <div class="bs-example" data-example-id="media-alignment">
         <div class="media">
