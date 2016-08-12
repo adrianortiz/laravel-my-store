@@ -140,7 +140,7 @@
 
 
 
-{!! Form::open(['route' => ['admin.categorias.show', 'IDShow'], 'method' => 'GET', 'id' => 'form-show']) !!}
+{!! Form::open(['route' => ['admin.slider.show', 'IDShow'], 'method' => 'GET', 'id' => 'form-show']) !!}
 {!! Form::close() !!}
 
 @endsection

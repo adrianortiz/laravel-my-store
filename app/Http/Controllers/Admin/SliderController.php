@@ -115,5 +115,12 @@ class SliderController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        return Slider::where('id', $id)
+            ->select('*')
+            ->get();
+    }
+
 
 }

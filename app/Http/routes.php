@@ -135,6 +135,11 @@ Route::group(['middleware' => 'auth'], function () {
                 'as' => 'admin.slider.update'
             ]);
 
+            Route::get('slider/show/{id}', [
+                'uses' => 'SliderController@show',
+                'as' => 'admin.slider.show'
+            ]);
+
 
 
 
