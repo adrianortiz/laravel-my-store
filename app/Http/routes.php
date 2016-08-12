@@ -65,6 +65,30 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'home', 'namespace' => 'Admin'], function () {
 
             /**
+             * Rutas para gestionar administradores
+             */
+
+            Route::get('admin', [
+                'uses'  => 'AdminController@show',
+                'as'    => 'admin.show'
+            ]);
+
+            Route::get('admin/update/{id}', [
+                'uses'  => 'AdminController@edit',
+                'as'    => 'admin.edit'
+            ]);
+
+            Route::put('admin/update', [
+                'uses' => 'AdminController@update',
+                'as' => 'admin.update'
+            ]);
+
+            Route::delete('admin/delete/{id}', [
+                'uses' => 'AdminController@destroy',
+                'as' => 'admin.destroy'
+            ]);
+
+            /**
              * Rutas para administrar coustumers
              */
 

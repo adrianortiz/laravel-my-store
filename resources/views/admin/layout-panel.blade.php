@@ -65,6 +65,7 @@
             <li><a href="{{ route('admin.proveedores') }}">Proveedores</a></li>
             <li><a href="{{ route('admin.categorias') }}">Categorías</a></li>
             <li><a href="{{ route('coustumer.show') }}">Usuarios</a></li>
+            <li><a href="{{ route('admin.show') }}">Administradores</a></li>
         </ul>
     </div>
 </header>
