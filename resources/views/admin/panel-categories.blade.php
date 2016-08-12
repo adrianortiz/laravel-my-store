@@ -24,7 +24,7 @@
 
         @foreach($categorias as $categoria)
             <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
+                <div class="thumbnail" data-categoria="{{$categoria->id}}">
                     <img data-src="holder.js/100%x200" alt="100%x200" src="{{ asset('media/icon/category-2.png') }}"
                          data-holder-rendered="true" style="width: 100%; height: auto; display: block;">
 
@@ -34,8 +34,7 @@
 
                         <p>
                             {!! Form::open(['route' => ['admin.categorias.destroy', $categoria->id], 'method' => 'DELETE']) !!}
-                            <a href="{{route('admin.categorias.editar', $categoria)}}" class="btn btn-info"
-                               id="btnUpdate">Actualizar</a>
+                            <button type="button" class="btn btn-info btn-edit">Editar</button>
                             <button type="submit" class="btn btn-danger" role="button">Eliminar</button>
                             {!! Form::close() !!}
                         </p>
@@ -67,12 +66,13 @@
 </div>
 
 
-@if($modal==true)
+
         <!-- Modal_Update -->
 <div class="modal fade" id="modalCategoriesUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
 
-        {!! Form::model($categoria, ['route' => ['admin.categorias.update', $categoria], 'method' => 'PUT', 'id' => 'form-edit', 'class' => 'form-horizontal']) !!}
+        {!! Form::open(['route' => 'admin.categorias.update', 'method' => 'PUT', 'id' => 'form-edit', 'class' => 'form-horizontal']) !!}
+        {!! Form::hidden('idUp', old('idUp'), ['id' => 'idUp']) !!}
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -99,7 +99,7 @@
 
     </div>
 </div>
-@endif
+
 
 
         <!-- Modal INSERT-->
@@ -137,25 +137,11 @@
     </div>
 </div>
 
-
+{!! Form::open(['route' => ['admin.categorias.show', 'IDShow'], 'method' => 'GET', 'id' => 'form-show']) !!}
+{!! Form::close() !!}
 @endsection
 
 @section('extra-scripts')
-
-    <script>
-        $(document).ready(function () {
-            @if($modal == true)
-            $('#form-edit').each(function () {
-                this.reset();
-            });
-            $('#modalCategoriesUpdate').modal('show');
-            @else
-               $('#modalCategoriesUpdate').modal('hide');
-            @endif
-
-
-        });
-    </script>
-
     <script>$('header div ul li:nth-child(5) a').addClass('active-menu');</script>
+    <script src=" {{ asset('js/panel-categoria.js') }}"></script>
 @endsection

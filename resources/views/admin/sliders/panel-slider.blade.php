@@ -66,8 +66,7 @@
 
                 {!! Form::open(['route' => ['admin.slider.destroy', $slider->id], 'method' => 'DELETE', 'class' => 'form-slider-destroy']) !!}
                 <div class="item-bg">
-                    <a href="{{route('admin.slider.editar', $slider)}}" class="btn btn-info"
-                       id="btnUpdate">Editar</a>
+                    <button type="button" class="btn btn-info btn-edit" style="background-color: #18346e">Editar</button>
                     <button type="submit">Eliminar</button>
                 </div>
                 {!! Form::close() !!}
@@ -94,13 +93,14 @@
 
 
 
-@if($modal==true)
+
 <!-- Modal UPDATE -->
 <div class="modal fade" id="modalSliderUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
 
-        {!! Form::model($slider, ['route' => ['admin.slider.update',$slider],'method' => 'PUT', 'id' => 'form-edit','class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
 
+        {!! Form::open(['route' => 'admin.slider.update' ,'method' => 'PUT', 'id' => 'form-edit','class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::hidden('idUp', old('idUp'), ['id' => 'idUp']) !!}
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -136,29 +136,16 @@
 
     </div>
 </div>
-@endif
 
 
 
 
+{!! Form::open(['route' => ['admin.categorias.show', 'IDShow'], 'method' => 'GET', 'id' => 'form-show']) !!}
+{!! Form::close() !!}
 
 @endsection
 
 @section('extra-scripts')
-    <script>
-        $(document).ready(function () {
-            @if($modal == true)
-            $('#form-edit').each(function () {
-                        this.reset();
-                    });
-            $('#modalSliderUpdate').modal('show');
-            @else
-               $('#modalSliderUpdate').modal('hide');
-            @endif
-
-        });
-    </script>
-
     <script>$('header div ul li:nth-child(1) a').addClass('active-menu');</script>
     <script src=" {{ asset('js/panel-slider.js') }}"></script>
 @endsection

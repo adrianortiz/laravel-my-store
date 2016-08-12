@@ -130,15 +130,12 @@ Route::group(['middleware' => 'auth'], function () {
                 'as' => 'admin.slider.destroy'
             ]);
 
-            Route::put('slider/{id}', [
+            Route::put('slider/update', [
                 'uses' => 'SliderController@update',
                 'as' => 'admin.slider.update'
             ]);
 
-            Route::get('slider/actualizar/{id}', [
-                'uses' => 'SliderController@edit',
-                'as' => 'admin.slider.editar'
-            ]);
+
 
 
 
@@ -183,7 +180,7 @@ Route::group(['middleware' => 'auth'], function () {
                 'as' => 'admin.categorias.store'
             ]);
 
-            Route::put('categorias/{id}', [
+            Route::put('categorias/update', [
                 'uses' => 'CategoriasController@update',
                 'as' => 'admin.categorias.update'
             ]);
@@ -193,9 +190,9 @@ Route::group(['middleware' => 'auth'], function () {
                 'as' => 'admin.categorias.destroy'
             ]);
 
-            Route::get('categorias/actualizar/{id}', [
-                'uses' => 'CategoriasController@edit',
-                'as' => 'admin.categorias.editar'
+            Route::get('categorias/show/{id}', [
+                'uses' => 'CategoriasController@show',
+                'as' => 'admin.categorias.show'
             ]);
 
 

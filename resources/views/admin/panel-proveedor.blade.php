@@ -302,6 +302,9 @@
         </div>
     </div>
 </div>
+
+
+
 <!-- Update And Select -->
 <div class="modal fade" id="modalUpProveedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">

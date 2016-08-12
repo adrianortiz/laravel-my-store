@@ -24,9 +24,8 @@ class SliderController extends Controller
 
     public function index() {
         $sliders = Slider::all();
-        $modal = false;
 
-        return view('admin.sliders.panel-slider', compact('sliders'),compact('modal'));
+        return view('admin.sliders.panel-slider', compact('sliders'));
     }
 
     public function store(Request $request) {
@@ -75,14 +74,7 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        $sliders = Slider::all();
-        $slider = Slider::where('id', $id)
-            ->select('*')
-            ->first();
 
-        $modal = true;
-
-        return view('admin.sliders.panel-slider', compact('slider'), compact('sliders'))->with('modal', $modal);
     }
 
     /**
@@ -92,8 +84,9 @@ class SliderController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $id = $request->idUp;
         DB::beginTransaction();
         try {
             $slider=Slider::findOrFail($id);
