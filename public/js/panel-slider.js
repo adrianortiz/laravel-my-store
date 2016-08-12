@@ -16,7 +16,7 @@ $(".form-slider-destroy").submit(function(e){
             SelectSlider: function () {
 
                 $('.btn-edit').click(function () {
-                    var slider = $(this).parents('tr');
+                    var slider = $(this).parents('div');
                     var id = slider.data('slider');
                     var form = $('#form-show');
                     var url = form.attr('action').replace('IDShow', id);
