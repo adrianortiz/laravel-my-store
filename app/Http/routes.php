@@ -36,15 +36,37 @@ Route::post('ventas', [
     'as' => 'users.carrito.store'
 ]);
 
-
+Route::get('client', [
+    'uses'  => 'Coustumer\CoustumerController@index',
+    'as'    => 'client.index'
+]);
 
 // USO DE MIDDLEWARES
 Route::group(['middleware' => 'auth'], function () {
 
-//    Route::group(['prefix' => '/', 'namespace' => 'Coustumer'], function(){
-//
-//    });
+        Route::group(['prefix' => '/home', 'namespace' => 'Coustumer'], function(){
 
+            Route::get('client/show', [
+                'uses'  => 'CoustumerController@show',
+                'as'    => 'client.show'
+            ]);
+
+            Route::get('client/edit', [
+                'uses'  => 'CoustumerController@edit',
+                'as'    => 'client.edit'
+            ]);
+
+            Route::put('client/update', [
+                'uses'  => 'CoustumerController@update',
+                'as'    => 'client.update'
+            ]);
+
+            Route::delete('client/delete/[id]', [
+                'uses'  => 'CoustumerController@destroy',
+                'as'    => 'client.destroy'
+            ]);
+
+        });
 
     Route::group(['middleware' => 'type.admin'], function () {
 

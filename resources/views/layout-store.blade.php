@@ -26,6 +26,7 @@
                 <li><a href="#">Contacto</a></li>
                 <li><a href="{{ url('/home') }}">Administración</a></li>
                 <li><a href="{{ url('/register') }}">Crear cuenta</a></li>
+                <li><a href="{{ route('client.index') }}">¡Clientes aqui!</a></li>
             </ul>
             <div id="menu-secundario">
                 <h2>Secciones</h2>

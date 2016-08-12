@@ -12,47 +12,42 @@ class CoustumerController extends Controller
 {
     //
     public function index (){
-        return view('users.create');
+        return view('welcome');
     }
 
-    public function create(){
-        $data = request()->all();
-        $user = new User([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-
-        $user->type = 'coustumer';
-        $user->save();
-
-        return redirect()->route('store.index');
-    }
-
-    public function edit($id){
+    public function edit(){
         $user = \DB::table('users')
-            ->select('id', 'name', 'email', 'password')
-            ->where('users.id', $id)
+            ->select('id', 'name', 'email', 'password', 'paterno', 'materno', 'sexo', 'fecha_na')
+            ->where('users.id', \Auth::user()->id)
             ->get();
-        return view('users.edit', compact('user'));
+        return view('users.edit-user', compact('user'));
     }
 
     public function update(Request $request){
+        $data = $request->all();
         \DB::beginTransaction();
         try {
             $coustumer = User::findOrFail($request->id);
-            $coustumer->fill($request->all());
+            $coustumer->fill([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'paterno' => $data['paterno'],
+                'materno' => $data['materno'],
+                'sexo' => $data['sexo'],
+                'fecha_na' => $data['fecha_na'],
+            ]);
             $coustumer->save();
 
             \Session::flash('message', 'Usuario actualizado.');
 
             \DB::commit();
-            return redirect()->route('coustumer.show');
+            return redirect()->route('client.show');
         } catch (\Exception $e) {
             \DB::rollback();
 
             \Session::flash('message', 'Ocurrio un problema');
-            return redirect()->route('coustumer.show');
+            return redirect()->route('client.show');
         }
     }
 
@@ -64,21 +59,22 @@ class CoustumerController extends Controller
             \Session::flash('message', 'Usuario eliminado.');
 
             \DB::commit();
-            return redirect()->route('coustumer.show');
+            return redirect()->route('client.show');
         } catch (\Exception $e) {
             \DB::rollback();
 
             \Session::flash('message', 'El usuario no puede eliminarse');
-            return redirect()->route('coustumer.show');
+            return redirect()->route('client.show');
         }
     }
 
     public function show(){
-        $users = \DB::table('users')
-            ->select('id', 'name', 'email', 'type')
-            ->where('users.type', 'coustumer')
+        $user = \DB::table('users')
+            ->select('*')
+            ->where('users.id', \Auth::user()->id)
+
             ->get();
-        return view('users.show', compact('users'));
+        return view('users.show', compact('user'));
     }
 
     public function store(){
