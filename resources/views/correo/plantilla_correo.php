@@ -33,7 +33,7 @@
 
 <body class="body">
 
-<div class="titulo" > <h1>Información V-Class</h1></div>
+<div class="titulo" > <h1>Información Codizer Tienda</h1></div>
 <hr>
 <div class=".div_contenido" > <?= $contenido;   ?></div>
 
