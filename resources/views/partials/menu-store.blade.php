@@ -1,7 +1,7 @@
 <ul>
-    <li><a href="#">Bedroom</a></li>
-    <li><a href="#">Living Room</a></li>
-    <li><a href="#">Dining Room</a></li>
-    <li><a href="#">Kitchen</a></li>
-    <li><a href="#">Leather Sectional</a></li>
+    <li><a href="#">Recamaras</a></li>
+    <li><a href="#">Salas</a></li>
+    <li><a href="#">Comedores</a></li>
+    <li><a href="#">Cocinas</a></li>
+    <li><a href="#">Otros</a></li>
 </ul>

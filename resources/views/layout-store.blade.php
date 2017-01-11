@@ -13,6 +13,11 @@
         .right {
             float: right !important;
         }
+
+        .container-menu {
+            background-image: inherit !important;
+            background-color: transparent !important;
+        }
     </style>
 
     @yield('extra-css')
@@ -79,7 +84,7 @@
                 </a>
             </li>
             <li>
-                <span>nMoedas: </span>
+                <span>Moneda: </span>
                 <select name="moneda-general" id="moneda-general">
                     <option value="1">Us Dollar</option>
                     <option value="2">Mx Pesos</option>
@@ -88,7 +93,7 @@
         </ul>
         <div id="global-search">
             {!! Form::open(['route' => 'buscar.index', 'method' => 'GET', 'id' => 'form-buscar']) !!}
-            {!! Form::text('buscar', null, ['id' => 'txtBuscar', 'placeholder' => 'Búsqueda del sitio']) !!}
+            {!! Form::text('buscar', null, ['id' => 'txtBuscar', 'placeholder' => 'Buscar en la tienda']) !!}
             <style>
                 .result-items-z {
                     display: none;
@@ -146,9 +151,9 @@
         <div>
             <ul>
                 <li><h3>Contacts:</h3></li>
-                <li><p>8901 Marmora Road, Glasgow, D04 89GR</p></li>
-                <li><span>Tel: 1(234) 567-8901</span></li>
-                <li><span>Tel: 1(234) 567-8902</span></li>
+                <li><p>06060 Hidalgo, Ciudad de México, México</p></li>
+                <li><span>Tel: (55) 567-8901</span></li>
+                <li><span>Tel: (55) 567-8902</span></li>
             </ul>
         </div>
         <div>
@@ -161,7 +166,7 @@
     </div>
     <div class="footer-bottom">
         <ul>
-            <li><a href="#">Furniture © 2013</a></li>
+            <li><a href="#">Codizer © 2016</a></li>
             <li><a href="#">Confidencialidad</a></li>
             <li><a href="#">Condiciones de uso</a></li>
         </ul>
