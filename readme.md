@@ -1,9 +1,19 @@
 # Tienda
 #### Carrito de compras basado en Laravel Framework
 
-Visita mi portafolio en [Pinterest](https://www.pinterest.com/codizerdev/portafolio/) o mi sitio web [Codizer](http://codizer.com/).
+Visita mi portafolio en [Pinterest](https://www.pinterest.com/codizerdev/portafolio/) o mi sitio web en [codizer.com](http://codizer.com/).
 
+
+#### Página principal de la tienda
+![Alt text](http://codizer.com/git-hub-img/laravel-store-index.png "Tienda CMS Laravel - Store index")
+
+#### Administrador de productos
+![Alt text](http://codizer.com/git-hub-img/laravel-store-admin-item.png "Tienda CMS Laravel - Store Admin Item")
+
+#### Administrador de Slider
 ![Alt text](https://s-media-cache-ak0.pinimg.com/originals/c5/fa/f0/c5faf004dac592af5e2cc5d72a237be5.png "Tienda CMS Laravel - Store")
+
+
 
 # Laravel PHP Framework
 
