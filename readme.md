@@ -2,7 +2,7 @@
 #### Carrito de compras basado en Laravel Framework
 
 Visita mi portafolio en [Pinterest](https://www.pinterest.com/codizerdev/portafolio/) o mi sitio web en [codizer.com](http://codizer.com/).
-
+Ve mi perfil en [LinkedIn](https://www.linkedin.com/in/adrianortizmartinez)
 
 #### Página principal de la tienda
 ![Alt text](http://codizer.com/git-hub-img/laravel-store-index.png "Tienda CMS Laravel - Store index")
