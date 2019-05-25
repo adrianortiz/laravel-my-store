@@ -18,6 +18,31 @@
             background-image: inherit !important;
             background-color: transparent !important;
         }
+
+        .dropdown-menu {
+            padding: 0 !important;
+            margin: 0 !important;
+            min-height: 40px !important;
+        }
+
+        .dropdown-menu li {
+            width: 100%;
+            padding: 0px !important;
+            margin: 0 !important;
+        }
+
+        .dropdown-menu li a {
+            padding: 8px 14px !important;
+            color: #0c1a38 !important;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-bottom: solid 1px rgba(238, 238, 238, 1.00);
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: rgba(46, 123, 205, 0.1);
+            border-bottom: solid 1px rgba(46, 123, 205, 0.2);
+
+        }
     </style>
 
     @yield('extra-css')
@@ -29,26 +54,24 @@
         <div id="menu-container">
             <ul>
                 <li><a href="{{ url('/') }}" class="menu-selected">Inicio</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="{{ url('/home') }}">Administración</a></li>
-                <li><a href="{{ url('/register') }}">Crear cuenta</a></li>
-                @if(Auth::user())
+                <li><a href="http://www.codizer.com/#contactanos">Contacto</a></li>
+                @if (Auth::guest())
+                    <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
+                    <li><a href="{{ url('/register') }}">Resgistrarse</a></li>
+                @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span>Hola: </span> {{ Auth::user()->name }} <span class="caret"></span>
+                            Bienvenido {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('client.show') }}" style="color: #000;">Cuenta</a></li>
-                            <li role="separator" class="divider"></li>
-                            <!--<li><a href="#" style="color: #000;">Añadir dirección</a></li>
-                            <li role="separator" class="divider"></li>-->
-                            <li><a href="{{ url('/logout') }}" style="color: #000; display: block;"><i
-                                            class="fa fa-btn fa-sign-out"></i>Salir</a></li>
+                            <li><a href="{{ route('client.show') }}">Mi cuenta</a></li>
+                            @if(Auth::user()->type == 'admin')
+                                <li><a href="{{ url('/home') }}">Administración</a></li>
+                            @endif
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Cerrar sesión</a></li>
                         </ul>
                     </li>
-                @else
-                    <li><a href="{{ route('client.index') }}">¡Clientes aqui!</a></li>
                 @endif
             </ul>
             <div id="menu-secundario">
@@ -166,7 +189,7 @@
     </div>
     <div class="footer-bottom">
         <ul>
-            <li><a href="#">Codizer © 2016</a></li>
+            <li><a href="#">Codizer © 2019</a></li>
             <li><a href="#">Confidencialidad</a></li>
             <li><a href="#">Condiciones de uso</a></li>
         </ul>
